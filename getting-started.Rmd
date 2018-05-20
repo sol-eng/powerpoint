@@ -71,7 +71,7 @@ summary(cars)
 plot(pressure)
 ```
 ````
-````
+
 
 ### Knit to PowerPoint
 

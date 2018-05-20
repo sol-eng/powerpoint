@@ -1,5 +1,5 @@
 ---
-title: "Getting Started with PowerPoint"
+title: "PowerPoint with R Markdown"
 author: "Nathan Stephens"
 date: "`r Sys.Date()`"
 output:
@@ -10,16 +10,13 @@ output:
       smooth_scroll: false
 ---
 
-```{r setup, include=FALSE}
-library(ggplot2)
-library(dygraphs)
-```
+<center><img src="img/rmd2ppt.png" style="width: 400px;"/></center>
 
-# Overview
+***
 
-RStudio makes it easy to render PowerPoint presentations from R Markdown documents. This capability is made possible by recent improvements to [Pandoc](http://pandoc.org/releases.html), `rmarkdown`, and the RStudio IDE.
+# Getting started
 
-### Setup
+RStudio makes it easy to render PowerPoint presentations from [R Markdown](https://rmarkdown.rstudio.com/) documents. This capability is made possible by recent improvements to [Pandoc](http://pandoc.org/releases.html), `rmarkdown`, and the RStudio IDE.
 
 To use all the features of RStudio with PowerPoint output, install the [RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/) which bundles Pandoc 2.x. You should also install **rmarkdown** >= v1.9.
 
@@ -27,15 +24,16 @@ To use all the features of RStudio with PowerPoint output, install the [RStudio 
 devtools::install_github("rstudio/rmarkdown")
 ```
 
-### Open a new presentation
+### New R Markdown presentation
 
 [RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/) now offers PowerPoint as an output format for R Markdown documents:
 
 `New File` > `R Markdown` > `Presentation` > `PowerPoint`
 
-![](img/openppt.png)
+<center><img src="img/openppt.png" style="width: 400px;"/></center>
 
-### Quick example
+
+### Quick Example
 
 To create a PowerPoint presentation from R Markdown, you specify the `powerpoint_presentation` output format in the YAML metadata of your document. 
 
@@ -49,25 +47,25 @@ output: powerpoint_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## R Markdown
+### R Markdown
 
 This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
 
-## Slide with Bullets
+### Slide with Bullets
 
 - Bullet 1
 - Bullet 2
 - Bullet 3
 
-## Slide with R Output
+### Slide with R Output
 
 `r ''````{r cars, echo = TRUE}
 summary(cars)
 ```
 
-## Slide with Plot
+### Slide with Plot
 
 `r ''````{r pressure}
 plot(pressure)
@@ -79,34 +77,63 @@ plot(pressure)
 
 When you knit the R Markdown document, RStudio renders your document in the PowerPoint output format. If you are using RStudio desktop, your PowerPoint presentation will automatically open and take you back to the last slide you were on. If you are using RStudio Server, you will be prompted to dowload the PowerPoint presentation.
 
-![](img/knit2ppt.png)
+<center><img src="img/knit2ppt.png" style="width: 400px;"/></center>
+
+You can also render files programmatically. For further details see the [Pandoc manual](http://pandoc.org/MANUAL.html).
+
+```
+> pandoc habits.txt -o habits.pptx
+```
+
+***
 
 # Markdown features
 
-You can generate most elements supported by Pandoc’s Markdown in PowerPoint output, such as bold/italic text, footnotes, bullets, LaTeX math expressions, images, and tables, etc. The PowerPoint output also supports these handy features:
+You can generate most elements supported by Pandoc’s Markdown in PowerPoint output, such as inline formatting, lists, LaTeX math expressions, images, hyperlinks, bock quotations, etc. Additionally, the PowerPoint output format also supports these handy features:
 
 * [Columns](#columns) (as defined in *Two Content* layout)
 * [Templates](#templates) (for changing slide size and design)
 * [Tables](#tables) (formatted as PowerPoint)
-* [Code blocks](#code-blocks) (with syntax highlighting)
 * [Speaker notes](#speaker-notes)
 
-## Standard features
+### Common markdown elements
 
-* Inline formatting: *italics*, **bold**, ~~strikeout~~, ~sub~^super^scripts, [small caps]{.smallcaps}, `verbatim`
-* Lists
-    1. Numbered
-    2. Unnumbered
-* Images
-* [Links](https://en.wikipedia.org/wiki/Lynx#/media/File:Lynx_lynx_poing.jpg) 
-* Block quotations
-* LaTeX math expressions and equations: $e^{i\pi}+1$
+The R Markdown output format supports most elements in the [R Markdown Reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) including these commonly used elements:
 
-## Columns
+```
+*italics* 
 
-::::::: {.columns}
-::: {.column}
+**bold** 
+
+~~strikeout~~ 
+
+~subscipt~
+
+^superscripts^
+
+[small caps]{.smallcaps} 
+
+`verbatim`
+
+1. Numbered list
+
+* Unnumbered list
+
+$math-expression$
+
+$$math-equation$$
+
+![](<image file or URL>)
+
+[link](target) 
+
+> Block quotations
+```
+
+### Columns
+
 Create slides with two columns. Insert text and images into columns. 
+
 ```
 ::::::: {.columns}
 ::: {.column}
@@ -117,13 +144,8 @@ Column 2
 :::
 :::::::
 ```
-:::
-::: {.column}
-![[R for Data Science](http://r4ds.had.co.nz/)](http://r4ds.had.co.nz/cover.png)
-:::
-:::::::
 
-## Templates
+### Templates
 
 Change the slide size or design with a reference doc when the presentation is rendered.
 
@@ -136,155 +158,144 @@ output:
 ---
 ```
 
-
-## Tables
-
- manufacturer    displ   hwy     class
--------------    ------  -----  ---------
-        audi     1.8     29      compact
-   chevrolet     5.3     20        suv
-       dodge     2.4     24      minivan
-
-## Code blocks
-
-R code chunks render with syntax highlighting.
-
-```{r eval=FALSE}
-library(tidyverse)
-nycflights13::flights %>%
-  filter(year == 2013 & month == 6) %>%
-  group_by(carrier) %>%
-  mutate(diff = (dep_delay - arr_delay)^2) %>%
-  summarize(mean = mean(diff, na.rm = TRUE)) %>%
-  arrange(desc(mean)) %>%
-  top_n(5)
-```
-
-## Speaker notes
-
-Add speaker notes to title and content slides.
-
-```
-::: notes
-here are my notes
-:::
-```
-
-::: notes
-here are my notes
-:::
-
-# R Output
-
-## Knitr Tables
-
-```{r, echo=FALSE}
-knitr::kable(head(iris, 8))
-```
-
-::: notes
-{r, echo=FALSE}
-knitr::kable(head(iris, 4))
-:::
-
-## Visualizations with ggplot2
-
-```{r echo=FALSE, fig.height=3, fig.width=6, fig.cap="Highway miles per gallon vs engine displacement"}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
-  geom_point(mapping = aes(color = class)) + 
-  geom_smooth(method = "loess")
-```
-
-::: notes
-{r echo=FALSE, fig.height=3, fig.width=6, fig.cap="Highway miles per gallon vs engine displacement"}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
-  geom_point(mapping = aes(color = class)) + 
-  geom_smooth(method = "loess")
-:::
-
-## HTML Widget Webshot
-
-```{r echo=FALSE, fig.height=3, fig.width=6, fig.cap="Screenshot of interactive dygraph"}
-dygraph(nhtemp, main = "New Haven Temperatures") %>% 
-  dyRangeSelector(dateWindow = c("1920-01-01", "1960-01-01"))
-```
-
-::: notes
-{r echo=FALSE, fig.height=3, fig.width=6, fig.cap="Screenshot of interactive dygraph"}
-dygraph(nhtemp, main = "New Haven Temperatures") %>% 
-  dyRangeSelector(dateWindow = c("1920-01-01", "1960-01-01"))
-:::
-
-## Shiny App Webshot 
-
-```{r cache=TRUE, screenshot.opts=list(delay=1), echo=FALSE, fig.cap="Click image to open"}
-knitr::include_app('https://gallery.shinyapps.io/goog-trend-index/')
-```
-
-::: notes
-{r cache=TRUE, screenshot.opts=list(delay=1), echo=FALSE, fig.cap="Click image to open"}
-knitr::include_app('https://gallery.shinyapps.io/goog-trend-index/')
-:::
-
-# Other Details
-
-## Getting started
-
-1. Download [RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/)
-2. Download `rmarkdown` from [GitHub](https://github.com/rstudio/rmarkdown)
-
-```
-devtools::install_github("rstudio/rmarkdown")
-```
-
-## How to render the presentation
-
-1. Press the `knit` button to render the presentation in RStudio
-2. Or render from the command line
-
-```
-> pandoc habits.txt -o habits.pptx
-```
-
-## How to take a Webshot
-
-Install webshot package and install phantomjs.
-
-```
-install.packages("webshot")
-webshot::install_phantomjs()
-```
-
-Use inlcude_app to webshot an app.
-
-```
-knitr::include_app('<URL>')
-```
-
-## Useful code chunk options
-
-* Caching
-    * `cache=TRUE`
-    * Save time by caching plots and other output
-* Screenshot delay
-    * `screenshot.opts=list(delay=1)`
-    * Allow apps to load before taking a screenshot
-* Captions
-    * `fig.cap="caption"`
-    * Add a caption to an image
-
-## Slide types
+Any template included with a recent install of Microsoft PowerPoint (either with .pptx or .potx extension) should work, as will most templates derived from these. The specific requirement is that the template should contain the following four layouts as its first four layouts:
 
 1. **Title**. Defined in the YAML header.
 2. **Section header**. Break the presentation into sections. These slides have a section header but no content.
 3. **Title and content**. Presentation content.
 4. **Two Content**. Presentation content in two columns.
 
-See the [Pandoc Manual](http://pandoc.org/MANUAL.html) for specific rules on controlling the `slide-level` option
+All templates included with a recent version of MS PowerPoint will fit these criteria. (You can click on Layout under the Home menu to check.)
 
-## References
+You can access the default reference.pptx by running: `pandoc --print-default-data-file reference.pptx > custom-reference.pptx`
 
-Getting help
+### Tables
+
+Create native PowerPoint tables that recognize PowerPoint table designs.
+
+```
+ manufacturer    displ   hwy     class
+-------------    ------  -----  ---------
+        audi     1.8     29      compact
+   chevrolet     5.3     20        suv
+       dodge     2.4     24      minivan
+```
+
+### Speaker notes
+
+Add speaker notes to title and content slides.
+
+```
+::: notes
+These are speaker notes for a slide
+:::
+```
+
+***
+
+# Structuring the presentation
+
+### Slide types
+
+1. **Title**. Defined in the YAML header.
+2. **Section header**. Break the presentation into sections. These slides have a section header but no content.
+3. **Title and content**. Presentation content.
+4. **Two Content**. Presentation content in two columns.
+
+By default, the slide level is the highest header level in the hierarchy that is followed immediately by content, and not another header, somewhere in the document. Override using the `slide-level` option. For details, see *Structuring the Slide Show* in the [Pandoc Manual](http://pandoc.org/MANUAL.html).
+
+The document is carved up into slides according to the following rules:
+
+* A horizontal rule always starts a new slide
+* A header at the slide level always starts a new slide
+* Headers below the slide level in the hierarchy create headers within a slide
+* Headers above the slide level in the hierarchy create *section headers*
+* A title page is constructed automatically from the document’s title block
+
+### Example
+
+In this example, the default slide level would be 1, because content exists after the section header. We can define the slide level as 3 in order to render the section header properly. Note that the comment "By default..." will render as a separate slide, because section headers only have a title, but not content.
+
+```
+---
+output: 
+  powerpoint_presentation:
+    slide_level: 3
+---
+
+# Section Header
+By default, content here would normally set this as the slide level 
+
+### Title and Content Slide
+The override sets this as the new slide level
+
+#### Bold text
+Text
+```
+
+***
+
+# Using R Code Chunks
+
+Include code, images, and tables using R code chunks. See [R Code Chunks](https://rmarkdown.rstudio.com/authoring_rcodechunks.html) for more information.
+
+### Tables
+
+Include tables with R.
+
+```
+knitr::kable(head(iris, 8))
+```
+
+### Static visualizations
+
+Include visualizations with R.
+
+```
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point(mapping = aes(color = class)) + 
+  geom_smooth(method = "loess")
+```
+
+### Interactive visualizations
+
+Capture [HTML Widgets](http://www.htmlwidgets.org/) and [Shiny apps](http://shiny.rstudio.com/) with the `webshot` package.
+
+```
+install.packages("webshot")
+webshot::install_phantomjs()
+```
+
+The `webshot` package will automatically take a screenshot of an interactive HTML Widget and insert it into your presentation.
+
+```
+dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+  dyRangeSelector(dateWindow = c("1920-01-01", "1960-01-01"))
+```
+
+You can take a screenshot of a Shiny app and include it in your presentation. Viewers can click the image in PowerPoint to link back to the hosted app online.
+
+```
+knitr::include_app('https://gallery.shinyapps.io/goog-trend-index/')
+```
+
+### Useful code chunk options
+
+These code chunk options can be useful when rendering PowerPoint output. 
+
+* Caching. Save time by caching plots and other output.
+* Screenshot delay. Allow apps to load before taking a screenshot.
+* Captions. Add a caption to an image.
+
+```
+{cache=TRUE, screenshot.opts=list(delay=1), fig.cap="caption"}
+```
+
+***
+
+# References
+
+**Getting help**
 
 * [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/powerpoint-presentation.html)
 * [Authoring Basics](https://rmarkdown.rstudio.com/authoring_basics.html)
@@ -292,6 +303,6 @@ Getting help
 * [R Code Chunks](https://rmarkdown.rstudio.com/authoring_rcodechunks.html)
 * [Pandoc Manual](http://pandoc.org/MANUAL.html)
 
-Submitting issues
+**Submitting issues**
 
 * [rmarkdown/issues](https://github.com/rstudio/rmarkdown/issues)

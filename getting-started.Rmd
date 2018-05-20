@@ -77,7 +77,9 @@ plot(pressure)
 
 When you knit the R Markdown document, RStudio renders your document in the PowerPoint output format. If you are using RStudio desktop, your PowerPoint presentation will automatically open and take you back to the last slide you were on. If you are using RStudio Server, you will be prompted to dowload the PowerPoint presentation.
 
-<center><img src="img/knit2ppt.png" style="width: 400px;"/></center>
+<center><img src="img/knit2ppt.png" style="width: 200px;"/></center>
+
+<br>
 
 You can also render files programmatically. For further details see the [Pandoc manual](http://pandoc.org/MANUAL.html).
 

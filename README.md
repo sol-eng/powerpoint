@@ -24,7 +24,7 @@ See the [Pandoc manual](http://pandoc.org/MANUAL.html) for specific details. Not
 
 ### Examples
 
-This project contains several example presentations that demonstrate various PowerPoint capabilities. Start with the **PowerPoint Intro** which gives an overview of Pandoc, R Markdown, and RStudio features.
+This project contains several example presentations that demonstrate various PowerPoint capabilities. Start with the [PowerPoint Intro](http://colorado.rstudio.com:3939/powerpoint/getting-started.html) which gives an overview of Pandoc, R Markdown, and RStudio features.
 
 * **Hello World**. Getting started with a simple example.
 * **Widscreen Template**. Change the slide size and design of a presentation.

@@ -293,7 +293,7 @@ These code chunk options can be useful when rendering PowerPoint output.
 
 ***
 
-# References
+# Reference
 
 **Getting help**
 
@@ -303,6 +303,6 @@ These code chunk options can be useful when rendering PowerPoint output.
 * [R Code Chunks](https://rmarkdown.rstudio.com/authoring_rcodechunks.html)
 * [Pandoc Manual](http://pandoc.org/MANUAL.html)
 
-**Submitting issues**
+[Examples](https://github.com/sol-eng/powerpoint)
 
-* [rmarkdown/issues](https://github.com/rstudio/rmarkdown/issues)
+[Submit an issues](https://github.com/rstudio/rmarkdown/issues)

@@ -1,6 +1,7 @@
 ---
-title: Getting Started with PowerPoint
-author: Nathan Stephens
+title: "Getting Started with PowerPoint"
+author: "Nathan Stephens"
+date: "`r Sys.Date()`"
 output:
   html_document:
     toc: true
@@ -14,35 +15,81 @@ library(ggplot2)
 library(dygraphs)
 ```
 
-## Open a new presentation
+# Overview
+
+RStudio makes it easy to render PowerPoint presentations from R Markdown documents. This capability is made possible by recent improvements to [Pandoc](http://pandoc.org/releases.html), `rmarkdown`, and the RStudio IDE.
+
+### Setup
+
+To use all the features of RStudio with PowerPoint output, install the [RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/) which bundles Pandoc 2.x. You should also install **rmarkdown** >= v1.9.
+
+```
+devtools::install_github("rstudio/rmarkdown")
+```
+
+### Open a new presentation
+
+[RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/) now offers PowerPoint as an output format for R Markdown documents:
+
+`New File` > `R Markdown` > `Presentation` > `PowerPoint`
 
 ![](img/openppt.png)
 
-## Example R Markdown
+### Quick example
 
-```
+To create a PowerPoint presentation from R Markdown, you specify the `powerpoint_presentation` output format in the YAML metadata of your document. 
+
+````markdown
 ---
-title: My presentation
+title: "Untitled"
 output: powerpoint_presentation
 ---
 
-# Section Header Slide
-
-## Title and Content Slide
-
-* Bullet 1
-* Bullet 2
-
-## Slide 2
-
-![](image.png)
+`r ''````{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Knit to PowerPoint
+## R Markdown
+
+This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+## Slide with Bullets
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+## Slide with R Output
+
+`r ''````{r cars, echo = TRUE}
+summary(cars)
+```
+
+## Slide with Plot
+
+`r ''````{r pressure}
+plot(pressure)
+```
+````
+````
+
+### Knit to PowerPoint
+
+When you knit the R Markdown document, RStudio renders your document in the PowerPoint output format. If you are using RStudio desktop, your PowerPoint presentation will automatically open and take you back to the last slide you were on. If you are using RStudio Server, you will be prompted to dowload the PowerPoint presentation.
 
 ![](img/knit2ppt.png)
 
 # Markdown features
+
+You can generate most elements supported by Pandoc’s Markdown in PowerPoint output, such as bold/italic text, footnotes, bullets, LaTeX math expressions, images, and tables, etc. The PowerPoint output also supports these handy features:
+
+* [Columns](#columns) (as defined in *Two Content* layout)
+* [Templates](#templates) (for changing slide size and design)
+* [Tables](#tables) (formatted as PowerPoint)
+* [Code blocks](#code-blocks) (with syntax highlighting)
+* [Speaker notes](#speaker-notes)
 
 ## Standard features
 
@@ -90,7 +137,7 @@ output:
 ```
 
 
-## PowerPoint tables with formatting
+## Tables
 
  manufacturer    displ   hwy     class
 -------------    ------  -----  ---------

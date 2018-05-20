@@ -1,0 +1,22 @@
+---
+title: "PowerPoint"
+output: 
+  powerpoint_presentation:
+    slide_level: 1
+---
+
+```{r, eval=FALSE, include=FALSE}
+devtools::install_github("rstudio/rmarkdown")
+```
+
+# Slide Title
+
+This presentation has one content slide because of the option: `slidel level: 1`.
+
+## Header 1
+
+Text 1
+
+## Header 2
+
+Text 2

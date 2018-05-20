@@ -1,0 +1,122 @@
+---
+title: PowerPoint
+subtitle: With R Markdown
+author: Nathan Stephens <nathan@rstudio.com>
+output: powerpoint_presentation
+---
+
+## What we do
+
+  * Build and promote software that supports reproducible data analysis
+  * Primary focus is the usability in our interfaces and API’s
+  * Dedicated to R and open source software
+  * 70% of our engineering effort is towards open source
+
+## Who is the R Admin?
+
+A data scientist (who knows R) and works with IT/Ops to: 
+
+1. Establish R as an analytic standard
+2. Promote R tooling
+3. Integrate R into other systems.
+
+[R Views: Analytics Administration for R](https://rviews.rstudio.com/2017/06/21/analytics-administration-for-r/)
+
+## That is why the r admin is rad!
+
+![](rad2.gif)
+
+## References
+
+:::::::::::::: {.columns}
+::: {.column}
+* [Github: r-admin-2018](https://github.com/nwstephens/r-admin-2018)
+* [Analytics Administration for R](https://rviews.rstudio.com/2017/06/21/analytics-administration-for-r/)
+* [Make R a Legitimate Part of Your Organization](https://rviews.rstudio.com/2016/11/16/make-r-a-legitimate-part-of-your-organization/)
+* [A Data Science Lab for R](https://rviews.rstudio.com/2017/12/20/rstudio-server-quick-start/)
+* [The Unix Workbench](seankross.com/the-unix-workbench/)
+:::
+::: {.column}
+![](rad1.gif)
+:::
+::::::::::::::
+
+
+# Demos
+
+## Bitcoin ETL
+
+```{r include=FALSE}
+library(jsonlite)
+library(purrr)
+library(DBI)
+library(dplyr)
+```
+
+### Extract
+
+```{r eval=FALSE}
+dat_json <- fromJSON("https://blockchain.info/ticker")
+dat_df <- map_dfr(dat_json, c, .id="name")
+```
+
+### Transform
+
+```{r eval=FALSE}
+dat <- dat_df %>%
+  mutate(timestamp = Sys.time()) %>%
+  select(timestamp, name:symbol)
+```
+
+### Load
+
+```{r eval=FALSE}
+con <- dbConnect(odbc::odbc(), "Postgres (DSN)")
+dbWriteTable(con, "bitcoin", dat, append = TRUE)
+```
+
+## Bitcoin Report
+
+```{r echo=FALSE, message=FALSE, fig.height=3, fig.width=6}
+library(DBI)
+library(dygraphs)
+library(xts)
+library(dplyr)
+library(ggplot2)
+
+# Connect
+con <- dbConnect(odbc::odbc(), "Postgres (DSN)")
+bitcoin <- tbl(con, "bitcoin")
+
+# Tidy
+dat <- bitcoin %>%
+  filter(name == "USD") %>%
+  select(timestamp, last, symbol) %>%
+  collect
+tseries <- xts(dat$last, dat$timestamp)
+lab <- paste0("Bitcoin (", dat$symbol[1], ")")
+```
+
+```{r echo=FALSE, fig.height=3, fig.width=6}
+# Dygraph
+dygraph(tseries, main = lab) %>%
+  dyOptions(axisLineWidth = 1.5, 
+            fillGraph = TRUE, 
+            drawGrid = FALSE, 
+            colors = "steelblue", 
+            axisLineColor = "darkgrey", 
+            axisLabelFontSize = 15) %>%
+  dyRangeSelector(fillColor = "lightsteelblue", strokeColor = "white")
+```
+
+## Bitcoin API
+
+```{r echo=FALSE, fig.width=15, cache=TRUE, screenshot.opts=list(delay=5)}
+knitr::include_app("http://colorado.rstudio.com/rsc/content/890/__swagger__/", height = "20px")
+```
+
+## Bitcoin App
+
+```{r echo=FALSE, fig.width=15, cache=TRUE, screenshot.opts=list(delay=5)}
+knitr::include_app("http://colorado.rstudio.com/rsc/content/888/", height = "20px")
+```

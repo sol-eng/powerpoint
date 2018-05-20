@@ -6,9 +6,10 @@ output:
 
 ### Slide types
 
-1. **Title slide** [optional] defined in the YAML header.
-2. **Section header slides** [optional] break the presentation into sections. These slides have a section header but no content.
-3. **Title and content slides** display the content in your presentation.
+1. **Title**. Defined in the YAML header.
+2. **Section header**. Break the presentation into sections. These slides have a section header but no content.
+3. **Title and content**. Presentation content.
+4. **Two Content**. Presentation content in two columns.
 
 ### Setting the slide level
 

@@ -1,0 +1,61 @@
+---
+title: Including Images
+output: powerpoint_presentation
+---
+
+# Summary
+
+Insert images from file or from the web
+
+* `![](file)`
+* `![](URL)`
+
+Create links
+
+* `![caption](image)` plain image
+* `[![caption](image)](link)` linked image
+* `![[caption](link)](image)` linked caption
+
+Insert images using R code (e.g. `ggplot`)
+
+Insert a webshot (e.g. `htmlwidgets` or `shiny`)
+
+
+# Plain Image
+
+![](r4ds.png)
+
+# Linked image
+
+[![Click to open](r4ds.png)](http://r4ds.had.co.nz/)
+
+# Linked caption
+
+![[R for Data Science](http://r4ds.had.co.nz/)](r4ds.png)
+
+# Web image
+
+![](https://www.rstudio.com/wp-content/uploads/2014/07/RStudio-Logo-Blue-Gray.png)
+
+# ggplot image
+
+```{r echo=FALSE, fig.height=3, fig.width=6, fig.cap="Highway miles per gallon vs engine displacement"}
+library(ggplot2)
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point(mapping = aes(color = class)) + 
+  geom_smooth(method = "loess")
+```
+
+# HTML Widget Webshot
+
+```{r echo=FALSE, fig.height=3, fig.width=6, fig.cap="Screenshot of interactive dygraph"}
+library(dygraphs)
+dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+  dyRangeSelector(dateWindow = c("1920-01-01", "1960-01-01"))
+```
+
+# Shiny App Webshot 
+
+```{r cache=TRUE, screenshot.opts=list(delay=1), echo=FALSE, fig.cap="Click image to open"}
+knitr::include_app('https://gallery.shinyapps.io/goog-trend-index/')
+```

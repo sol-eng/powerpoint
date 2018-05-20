@@ -1,7 +1,7 @@
 
 # R Markdown to PowerPoint
 
-You can render PowerPoint presentations from R Markdown documents. This capability is made possible by recent improvements to [Pandoc](http://pandoc.org/releases.html).
+You can render PowerPoint presentations from R Markdown documents. This capability is made possible by recent improvements to [Pandoc](http://pandoc.org/releases.html). See this [guide for getting started with RStudio](http://colorado.rstudio.com:3939/powerpoint/getting-started.html).
 
 ![](img/rmd2ppt.png)
 

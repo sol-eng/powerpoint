@@ -14,13 +14,22 @@ RStudio version 1.2 bundles Pandoc 2+ and contains additional features for makin
 
 Most standard markdown formats are supported in the PowerPoint output (e.g. lists, images, links, quotes, math, inline formatting, etc.). Additionally, PowerPoint output support these nice features:
 
-* Speaker notes
 * Columns
+* Templates (i.e. reference docs)
 * Tables
 * Code blocks with syntax highlighting
-* Templates (i.e. reference docs)
+* Speaker notes
 
 See the [Pandoc manual](http://pandoc.org/MANUAL.html) for specific details. Note: If you want to change the slide dimensions or any other aesthetics, you should make those changes in a PowerPoint template and then include `reference_doc: mytemplate.pptx` in the YAML header.
 
+### Examples
 
+This project contains several example presentations that demonstrate various PowerPoint capabilities.
+
+* **Overview**. An overview of Pandoc, R Markdown, and RStudio features.
+* **Hello World**. Getting started with a simple example.
+* **Shiny Webshot**. Create a webshot of a Shiny app.
+* **Widscreen Template**. Change the slide size and design.
+* **Slide Level**. Define the slide level.
+* **R Admin**. An example presentation from rstudio::conf 2018.
 

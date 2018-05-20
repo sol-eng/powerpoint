@@ -1,22 +1,53 @@
 ---
-title: "PowerPoint"
 output: 
   powerpoint_presentation:
-    slide_level: 1
+    slide_level: 3
 ---
 
-```{r, eval=FALSE, include=FALSE}
-devtools::install_github("rstudio/rmarkdown")
+### Slide types
+
+1. **Title slide** [optional] defined in the YAML header.
+2. **Section header slides** [optional] break the presentation into sections. These slides have a section header but no content.
+3. **Title and content slides** display the content in your presentation.
+
+### Setting the slide level
+
+By default, the slide level is the highest header level in the hierarchy that is followed immediately by content, and not another header, somewhere in the document. Override using the `slide-level` option. For details, see *Structuring the Slide Show* in the [Pandoc Manual](http://pandoc.org/MANUAL.html).
+
+### Rules
+
+* A horizontal rule always starts a new slide
+* A header at the slide level always starts a new slide
+* Headers below the slide level in the hierarchy create headers within a slide
+* Headers above the slide level in the hierarchy create *section headers*
+* A title page is constructed automatically from the document’s title block
+
+# Example
+
+### Slide Level: 3
+
+```
+---
+output: 
+  powerpoint_presentation:
+    slide_level: 3
+---
+
+# Section Header
+By default, content here would normally set this as the slide level 
+
+### Title and Content Slide
+The override sets this as the new slide level
+
+#### Bold text
+Text
 ```
 
-# Slide Title
+# Section Header
+By default, content here would normally set this as the slide level 
 
-This presentation has one content slide because of the option: `slidel level: 1`.
+### Title and Content Slide
+The override sets this as the new slide level
 
-## Header 1
-
-Text 1
-
-## Header 2
-
-Text 2
+#### Bold text
+Text

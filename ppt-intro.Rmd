@@ -224,7 +224,7 @@ knitr::include_app('<URL>')
 
 ## Slide types
 
-1. **Title slide** defined in the YAML header.
+1. **Title slide** [optional] defined in the YAML header.
 2. **Section header slides** [optional] break the presentation into sections. These slides have a section header but no content.
 3. **Title and content slides** display the content in your presentation. See the [Pandoc Manual](http://pandoc.org/MANUAL.html) for specific rules on controlling the `slide-level` option.
 

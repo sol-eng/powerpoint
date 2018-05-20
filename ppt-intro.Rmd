@@ -12,7 +12,7 @@ library(dygraphs)
 
 ## Open a new presentation
 
-![](openppt.png)
+![](img/openppt.png)
 
 ## Example R Markdown
 
@@ -36,7 +36,7 @@ output: powerpoint_presentation
 
 ## Knit to PowerPoint
 
-![](knit2ppt.png)
+![](img/knit2ppt.png)
 
 # Markdown features
 

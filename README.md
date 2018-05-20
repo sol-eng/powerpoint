@@ -3,7 +3,7 @@
 
 You can render PowerPoint presentations from R Markdown documents. This capability is made possible by recent improvements to [Pandoc 2+](http://pandoc.org/releases.html).
 
-![](rmd2ppt.png)
+![](img/rmd2ppt.png)
 
 
 ### RStudio v1.2
@@ -26,7 +26,7 @@ See the [Pandoc manual](http://pandoc.org/MANUAL.html) for specific details. Not
 
 This project contains several example presentations that demonstrate various PowerPoint capabilities.
 
-* **Overview**. An overview of Pandoc, R Markdown, and RStudio features.
+* **PowerPoint Intro**. An overview of Pandoc, R Markdown, and RStudio features.
 * **Hello World**. Getting started with a simple example.
 * **Shiny Webshot**. Create a webshot of a Shiny app.
 * **Widscreen Template**. Change the slide size and design.

@@ -239,7 +239,7 @@ Text
 
 Include code, images, and tables using R code chunks. See [R Code Chunks](https://rmarkdown.rstudio.com/authoring_rcodechunks.html) for more information.
 
-### Tables
+### Tables with R
 
 Include tables with R.
 
@@ -283,9 +283,9 @@ knitr::include_app('https://gallery.shinyapps.io/goog-trend-index/')
 
 These code chunk options can be useful when rendering PowerPoint output. 
 
-* Caching. Save time by caching plots and other output.
-* Screenshot delay. Allow apps to load before taking a screenshot.
-* Captions. Add a caption to an image.
+* `cache`. Save time by caching plots and other output.
+* `screenshot.opts`. Allow apps to load before taking a screenshot.
+* `fig.cap`. Add a caption to an image.
 
 ```
 {cache=TRUE, screenshot.opts=list(delay=1), fig.cap="caption"}

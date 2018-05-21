@@ -85,6 +85,10 @@ You can also render files programmatically.
 rmarkdown::render(input = "input.Rmd", output_format = "powerpoint_presentation", output_file = "output.pptx")
 ```
 
+### Post rendering adjustments
+
+Markdown elements are rendered as natively in PowerPoint. Manually changing the slide size or design after rendering will automatically change titles, content, tables, and other elements.
+
 ***
 
 # Markdown features
@@ -106,8 +110,6 @@ You can generate most elements supported by Pandoc’s Markdown in PowerPoint ou
 $math-expression$
 $$math-equation$$
 
-![](<image file or image URL>)
-
 [link](target) 
 
 > Block quotations
@@ -117,9 +119,8 @@ Additionally, the PowerPoint output format also supports these handy features:
 
 * [Columns](#columns) as defined in *Two Content* layout
 * [Templates](#templates) for changing slide size and design
-* [Images](#images-with-markdown) for static images
-* [Tables with Markdown](#tables-with-markdown) formatted as PowerPoint
 * [Speaker notes](#speaker-notes) for presenter view and handouts
+* [Images and tables](#images-and-tables) placed on their own slides
 
 ### Columns
 
@@ -158,7 +159,20 @@ Any template included with a recent install of Microsoft PowerPoint (either with
 
 All templates included with a recent version of MS PowerPoint will fit these criteria. (You can click on Layout under the Home menu to check.) You can access the default reference.pptx by running: `pandoc --print-default-data-file reference.pptx > custom-reference.pptx`
 
-### Images with Markdown
+### Speaker notes
+
+Add speaker notes to slides. Speaker notes support limited formats such as bold, italics, and lists. Speaker notes will be available in handouts and presenter view.
+
+```
+::: notes
+This is my note.
+
+- It can contain Markdown
+- like this list
+:::
+```
+
+### Images and tables
 
 Insert static images from file or from the web. Captions will render below the image. You can add a link to the caption or to the image itself. 
 
@@ -179,9 +193,7 @@ Insert static images from file or from the web. Captions will render below the i
 ![[caption](link)](image)
 ```
 
-### Tables with Markdown
-
-Create native PowerPoint tables that recognize PowerPoint table designs.
+Create native PowerPoint tables that recognize PowerPoint table designs. Table output from markdown will assume the table design of whatever template is applied.
 
 ```
  manufacturer    displ   hwy     class
@@ -191,18 +203,7 @@ Create native PowerPoint tables that recognize PowerPoint table designs.
        dodge     2.4     24      minivan
 ```
 
-### Speaker notes
-
-Add speaker notes to slides. Speaker notes support limited formats such as bold, italics, and lists. Speaker notes will be available in handouts and presenter view.
-
-```
-::: notes
-This is my note.
-
-- It can contain Markdown
-- like this list
-:::
-```
+Note that images and tables will always be placed on new slides. The only elements that can coexist with an image or table on a slide are the slide header and caption. When you have a text paragraph and an image on the same slide, the image will be moved to a new slide automatically. Images will be scaled automatically to fit the slide.
 
 ***
 
@@ -238,14 +239,6 @@ The override sets this as the new slide level
 #### Bold text
 Text
 ```
-
-### Images and tables
-
-Note that images and tables will always be placed on new slides. The only elements that can coexist with an image or table on a slide are the slide header and image/table caption. When you have a text paragraph and an image on the same slide, the image will be moved to a new slide automatically. Images will be scaled automatically to fit the slide.
-
-### Post rendering adjustments
-
-You can change the slide size and design manually after the PowerPoint presentation is rendered. Because the PowerPoint presentation is rendered with native PowerPoint elements, changing the slide size or design will automatically change titles, content, and tables.
 
 ***
 

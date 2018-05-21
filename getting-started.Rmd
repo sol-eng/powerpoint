@@ -303,7 +303,7 @@ These code [chunk options](https://yihui.name/knitr/options/) can be useful when
 
 ***
 
-# Reference
+# References
 
 [Markdown Basics](https://rmarkdown.rstudio.com/authoring_basics.html)
 

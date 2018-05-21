@@ -153,7 +153,7 @@ Any template included with a recent install of Microsoft PowerPoint (either with
 1. Title. Defined by the YAML header.
 2. Section header. Break the presentation into sections. These slides have a section header but no content.
 3. Title and content. Content slide.
-4. Two Content. Content with two columns.
+4. Two Content. Content slide with two columns.
 
 All templates included with a recent version of MS PowerPoint will fit these criteria. (You can click on Layout under the Home menu to check.) You can access the default reference.pptx by running: `pandoc --print-default-data-file reference.pptx > custom-reference.pptx`
 
@@ -175,23 +175,15 @@ This is my note.
 Insert static images from file or from the web. Captions will render below the image. You can add a link to the caption or to the image itself. 
 
 ```
-# Insert from file
-![](file)
+![](file) # image from file
+![](URL) # image from web
 
-# Insert from web
-![](URL)
-
-# Plain image
-![caption](image) plain image
-
-# Linked image
-[![caption](image)](link)
-
-# Linked caption
-![[caption](link)](image)
+![caption](image) # plain image
+[![caption](image)](link) # linked image
+![[caption](link)](image) # linked caption
 ```
 
-Create native PowerPoint tables that recognize PowerPoint table designs. Table output from markdown will assume the table design of whatever template is applied.
+Use Markdown to create [tables](http://pandoc.org/MANUAL.html#tables) that render natively in PowerPoint. These tables recognize PowerPoint table designs and assume the design of whatever template is applied.
 
 ```
  manufacturer    displ   hwy     class
@@ -215,7 +207,7 @@ By default, the slide level is the highest header level in the hierarchy that is
 * Headers above the slide level in the hierarchy create *section headers*
 * A title page is constructed automatically from the document’s title block
 
-These rules are designed to support many different styles of slide show. If you don’t care about structuring your slides into sections and subsections, you can just use level 1 headers for all each slide. (In that case, level 1 will be the slide level.) But you can also structure the slide show into sections, as in the example above.
+These rules are designed to support many different styles of slide show. If you don’t care about structuring your slides into sections and subsections, you can just use level 1 headers for each slide. (In that case, level 1 will be the slide level.) But you can also structure the slide show into sections. See [Structuring the slide show](http://pandoc.org/MANUAL.html#structuring-the-slide-show) for details.
 
 ### Example
 

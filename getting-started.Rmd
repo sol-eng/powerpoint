@@ -199,7 +199,7 @@ Note that images and tables will always be placed on new slides. The only elemen
 
 # Structuring the presentation
 
-By default, the slide level is the highest header level in the hierarchy that is followed immediately by content, and not another header, somewhere in the document. This default can be overridden using the `slide-level` option. The document is carved up into slides according to the following rules:
+By default, the slide level is the highest header level in the hierarchy that is followed immediately by content, and not another header, somewhere in the document. This default can be overridden using the `slide-level` option. The document is carved up into slides according to the following [rules](http://pandoc.org/MANUAL.html#structuring-the-slide-show):
 
 * A horizontal rule always starts a new slide
 * A header at the slide level always starts a new slide
@@ -207,7 +207,7 @@ By default, the slide level is the highest header level in the hierarchy that is
 * Headers above the slide level in the hierarchy create *section headers*
 * A title page is constructed automatically from the document’s title block
 
-These rules are designed to support many different styles of slide show. If you don’t care about structuring your slides into sections and subsections, you can just use level 1 headers for each slide. (In that case, level 1 will be the slide level.) But you can also structure the slide show into sections. See [Structuring the slide show](http://pandoc.org/MANUAL.html#structuring-the-slide-show) for details.
+These rules are designed to support many different styles of slide show. If you don’t care about structuring your slides into sections and subsections, you can just use level 1 headers for each slide. (In that case, level 1 will be the slide level.) But you can also structure the slide show into sections.
 
 ### Example
 

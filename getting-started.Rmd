@@ -262,9 +262,9 @@ plot(cars)
 
 ### Webshots
 
-Capture [HTML Widgets](http://www.htmlwidgets.org/) and [Shiny apps](http://shiny.rstudio.com/) with the `webshot` package. With the `webshot` package, you can embed a screenshot of a Shiny application that links viewers to a live application hosted on RStudio Connect, Shiny Server, or Shinyapps.io.
+Capture [HTML Widgets](http://www.htmlwidgets.org/) and [Shiny apps](http://shiny.rstudio.com/) with the [`webshot`](https://cran.r-project.org/web/packages/webshot/vignettes/intro.html) package. With the [`webshot`](https://cran.r-project.org/web/packages/webshot/vignettes/intro.html) package, you can embed a screenshot of a Shiny application that links viewers to a live application hosted on RStudio Connect, Shiny Server, or Shinyapps.io.
 
-Install the [webshots](https://cran.r-project.org/web/packages/webshot/vignettes/intro.html) package and [phantomjs](http://phantomjs.org/). The `webshot` package will automatically take a screenshot of an interactive HTML Widget and insert it into your presentation. Use `knitr::include_app` to include a Shiny application in your presentation. Viewers can click the image in PowerPoint to link back to the hosted app online.
+Install the [`webshot`](https://cran.r-project.org/web/packages/webshot/vignettes/intro.html) package and [phantomjs](http://phantomjs.org/). The [`webshot`](https://cran.r-project.org/web/packages/webshot/vignettes/intro.html) package will automatically take a screenshot of an interactive HTML Widget and insert it into your presentation. Use `knitr::include_app` to include a Shiny application in your presentation. Viewers can click the image in PowerPoint to link back to the hosted app online.
 
 ```
 # Install
@@ -278,15 +278,16 @@ dygraphs::dygraph(nhtemp, main = "New Haven Temperatures")
 knitr::include_app('https://gallery.shinyapps.io/goog-trend-index/')
 ```
 
-### Code chunk options
+### Options
 
-These code [chunk options](https://yihui.name/knitr/options/) can be useful when rendering PowerPoint output. 
+These code [chunk options](https://yihui.name/knitr/options/) can be especially useful when rendering PowerPoint output. 
 
-* `cache`. Save time by caching plots and other output.
-* `screenshot.opts`. Allow apps to load before taking a screenshot.
-* `fig.width`. Specify figure width.
-* `fig.heigth`. Specify figure height.
-* `fig.cap`. Add a caption to an image.
+* `cache`. Used to save time by caching plots and other output. If document rendering becomes time consuming due to long computations or plots that are expensive to generate you can use knitr caching to improve performance.
+* `screenshot.opts`. Used to delay a webshot. An arbitrary URL may take a long time to load. You can increase the delay to allow apps time to load before taking a webshot.
+* `fig.width` and `fig.height`. Used to size a plot. Has to be numeric in inches. Default is 7.
+* `fig.cap`. Used to add a caption to an image. Captions will render below the image.
+
+This example code chunks waits one second for an app to load, resizes the width to 15 inches, and caches the image for later use.
 
 ```
 {r, cache=TRUE, screenshot.opts=list(delay=1), fig.width=15, fig.cap="caption"}

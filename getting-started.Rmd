@@ -16,9 +16,7 @@ output:
 
 # Getting started
 
-RStudio makes it easy to render PowerPoint presentations from [R Markdown](https://rmarkdown.rstudio.com/) documents. This capability is made possible by recent improvements to [Pandoc](http://pandoc.org/releases.html), `rmarkdown`, and the RStudio IDE.
-
-To use all the features of RStudio with PowerPoint output, install the [RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/) which bundles Pandoc 2.x. You should also install **rmarkdown** >= v1.9.
+RStudio makes it easy to render PowerPoint presentations from [R Markdown](https://rmarkdown.rstudio.com/) documents. This capability is made possible by recent improvements to [Pandoc](http://pandoc.org/releases.html), `rmarkdown`, and the RStudio IDE. To use all the features of RStudio with PowerPoint output, install the [RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/) which bundles Pandoc 2.x. You should also install **rmarkdown** >= v1.9.
 
 ```
 devtools::install_github("rstudio/rmarkdown")
@@ -199,12 +197,10 @@ Add speaker notes to slides. Speaker notes support limited formats such as bold,
 
 ```
 ::: notes
-
 This is my note.
 
 - It can contain Markdown
 - like this list
-
 :::
 ```
 
@@ -212,9 +208,7 @@ This is my note.
 
 # Structuring the presentation
 
-By default, the slide level is the highest header level in the hierarchy that is followed immediately by content, and not another header, somewhere in the document. This default can be overridden using the --slide-level option.
-
-The document is carved up into slides according to the following rules:
+By default, the slide level is the highest header level in the hierarchy that is followed immediately by content, and not another header, somewhere in the document. This default can be overridden using the `slide-level` option. The document is carved up into slides according to the following rules:
 
 * A horizontal rule always starts a new slide
 * A header at the slide level always starts a new slide
@@ -226,9 +220,7 @@ These rules are designed to support many different styles of slide show. If you 
 
 ### Example
 
-This presentation sets `slide_level: 3`. The result will be a presentation with three slides: (1) a section header slide; (2) a content slide for the comment, "By default..."; and (3) a title and content slide for the rest of the content.
-
-Without the override this presentation would have been rendered to a single slide. The default rules would set `slide_level: 1` because the section header is immediately followed by content.
+This presentation sets `slide_level: 3`. The result will be a presentation with three slides: (1) a section header slide; (2) a content slide for the comment, "By default..."; and (3) a title and content slide for the rest of the content. Without the override this presentation would have been rendered to a single slide. The default rules would set `slide_level: 1` because the section header is immediately followed by content.
 
 ```
 ---
@@ -259,7 +251,7 @@ You can change the slide size and design manually after the PowerPoint presentat
 
 # R Code Chunks
 
-[R Code Chunks](https://rmarkdown.rstudio.com/authoring_rcodechunks.html) can be used as a means render R output into documents or to simply display code for illustration. Pandoc supports syntax highlighting for R code chunks.
+[R Code Chunks](https://rmarkdown.rstudio.com/authoring_rcodechunks.html) can be used as a means to render R output into documents or to simply display code for illustration. Pandoc supports syntax highlighting for R code chunks.
 
 ### Table output
 
@@ -271,7 +263,7 @@ knitr::kable(mtcars)
 
 ### Plot output
 
-R code chunks can also be used to render plots. Note that images and tables will always be placed on new slides. The only elements that can coexist with an image or table on a slide are the slide header and image/table caption. When you have a text paragraph and an image on the same slide, the image will be moved to a new slide automatically. Images will be scaled automatically to fit the slide.
+R code chunks can also be used to render plots. Images will be scaled automatically to fit the slide. You can change image size in with `fig.width` and `fig.height` code chunk options.
 
 ```
 plot(cars)
@@ -281,7 +273,7 @@ plot(cars)
 
 Capture [HTML Widgets](http://www.htmlwidgets.org/) and [Shiny apps](http://shiny.rstudio.com/) with the `webshot` package. With the `webshot` package, you can embed a screenshot of a Shiny application that links viewers to a live application hosted on RStudio Connect, Shiny Server, or Shinyapps.io.
 
-Install the [webshots](https://cran.r-project.org/web/packages/webshot/vignettes/intro.html) package and [phantomjs](http://phantomjs.org/). The `webshot` package will automatically take a screenshot of an interactive HTML Widget and insert it into your presentation. Use `knitr::include_app('<URL>')` to include a Shiny application in your presentation. Viewers can click the image in PowerPoint to link back to the hosted app online.
+Install the [webshots](https://cran.r-project.org/web/packages/webshot/vignettes/intro.html) package and [phantomjs](http://phantomjs.org/). The `webshot` package will automatically take a screenshot of an interactive HTML Widget and insert it into your presentation. Use `knitr::include_app` to include a Shiny application in your presentation. Viewers can click the image in PowerPoint to link back to the hosted app online.
 
 ```
 # Install
@@ -302,6 +294,7 @@ These code [chunk options](https://yihui.name/knitr/options/) can be useful when
 * `cache`. Save time by caching plots and other output.
 * `screenshot.opts`. Allow apps to load before taking a screenshot.
 * `fig.width`. Specify figure width.
+* `fig.heigth`. Specify figure height.
 * `fig.cap`. Add a caption to an image.
 
 ```
@@ -317,6 +310,8 @@ These code [chunk options](https://yihui.name/knitr/options/) can be useful when
 [Pandoc Markdown](https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html)
 
 [R Code Chunks](https://rmarkdown.rstudio.com/authoring_rcodechunks.html)
+
+[Chunk Options](https://yihui.name/knitr/options/)
 
 [Pandoc Manual](http://pandoc.org/MANUAL.html)
 

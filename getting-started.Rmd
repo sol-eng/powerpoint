@@ -85,8 +85,6 @@ You can also render files programmatically.
 rmarkdown::render(input = "input.Rmd", output_format = "powerpoint_presentation", output_file = "output.pptx")
 ```
 
-### Post rendering adjustments
-
 Markdown elements are rendered as natively in PowerPoint. Manually changing the slide size or design after rendering will automatically change titles, content, tables, and other elements.
 
 ***
@@ -117,14 +115,14 @@ $$math-equation$$
 
 Additionally, the PowerPoint output format also supports these handy features:
 
-* [Columns](#columns) as defined in *Two Content* layout
-* [Templates](#templates) for changing slide size and design
-* [Speaker notes](#speaker-notes) for presenter view and handouts
-* [Images and tables](#images-and-tables) placed on their own slides
+* [Columns](#columns)
+* [Templates](#templates)
+* [Speaker notes](#speaker-notes)
+* [Images and tables](#images-and-tables)
 
 ### Columns
 
-To put material in side by side columns, you can use a native div container with class `columns`, containing two containers with class `column`:
+To put material in side by side columns, you can use a native div container with class `columns`, containing two containers with class `column`. Columns will render using the *Two Content* layout in PowerPoint.
 
 ```
 :::::::::::::: {.columns}

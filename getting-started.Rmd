@@ -316,7 +316,7 @@ This example code chunks waits one second for an app to load, resizes the width 
 ```{r support, eval=FALSE, include=FALSE}
 library(magrittr)
 readLines("getting-started.html") %>%
-  .[grep('id="getting-started"', .):(length(.)-31)] %>%
+  .[grep('id="header"', .):(length(.)-31)] %>%
   gsub(' class="section level[0-9]"',"", .) %>%
   cat(., file = "support.html", sep = "\n")
 ```

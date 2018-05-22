@@ -1,5 +1,5 @@
 ---
-title: "PowerPoint with R Markdown"
+title: "Rendering PowerPoint Presentations with R Markdown"
 author: "Nathan Stephens"
 date: "`r Sys.Date()`"
 output:
@@ -10,13 +10,18 @@ output:
       smooth_scroll: false
 ---
 
-<center><img src="img/rmd2ppt.png" style="width: 400px;"/></center>
-
-***
+<div style="background-color: #f5f5f5; text-align: left; vertical-align: middle; padding: 20px 47px;">
+<p><em>To create PowerPoint presentations with RStudio:</em></p>
+<ul>
+<li><em>Install the <a href="https://www.rstudio.com/products/rstudio/download/preview/">preview release</a> of RStudio</em></li>
+<li><em>Install the development version of <code>rmarkdown</code> by running: &gt;<code>devtools::install_github("rstudio/rmarkdown")</code>. </em></li>
+</ul>
+<p><em>Click <a href="https://github.com/sol-eng/powerpoint">here</a> for a list of examples. </em><em>Submit PowerPoint issues to <a href="https://github.com/rstudio/rmarkdown/issues"><code>rmarkdown/issues</code></a>.</em></p>
+</div>
 
 # Getting started
 
-RStudio makes it easy to render PowerPoint presentations from [R Markdown](https://rmarkdown.rstudio.com/) documents. This capability is made possible by recent improvements to [Pandoc](http://pandoc.org/releases.html), `rmarkdown`, and the RStudio IDE. To use all the features of RStudio with PowerPoint output, install the [RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/) which bundles Pandoc 2.x. You should also install **rmarkdown** >= v1.9.
+RStudio makes it easy to render PowerPoint presentations from [R Markdown](https://rmarkdown.rstudio.com/) documents. This capability is made possible by recent improvements to [Pandoc](http://pandoc.org/releases.html), `rmarkdown`, and the RStudio IDE. To use all the features of RStudio with PowerPoint output, install the [RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/) which bundles Pandoc 2.x. You should also install the development version of `rmarkdown`.
 
 ```
 devtools::install_github("rstudio/rmarkdown")
@@ -47,9 +52,13 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ### R Markdown
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+This is an R Markdown presentation. Markdown is a simple formatting 
+syntax for authoring HTML, PDF, and MS Word documents. For more 
+details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+When you click the **Knit** button a document will be generated that 
+includes both content as well as the output of any embedded R code 
+chunks within the document.
 
 ### Slide with Bullets
 
@@ -82,7 +91,7 @@ When you knit the R Markdown document, RStudio renders your document in the Powe
 You can also render files programmatically. 
 
 ```
-rmarkdown::render(input = "input.Rmd", output_format = "powerpoint_presentation", output_file = "output.pptx")
+rmarkdown::render("in.Rmd", output_format = "powerpoint_presentation")
 ```
 
 Markdown elements are rendered as natively in PowerPoint. Manually changing the slide size or design after rendering will automatically change titles, content, tables, and other elements.
@@ -246,7 +255,7 @@ knitr::kable(mtcars)
 
 ### Plot output
 
-R code chunks can also be used to render plots. Images will be scaled automatically to fit the slide. You can change image size in with `fig.width` and `fig.height` code chunk options.
+R code chunks can also be used to render plots. Images will be scaled automatically to fit the slide. You can change image size with `fig.width` and `fig.height` code chunk options.
 
 ```
 plot(cars)
@@ -282,7 +291,7 @@ These code [chunk options](https://yihui.name/knitr/options/) can be especially 
 This example code chunks waits one second for an app to load, resizes the width to 15 inches, and caches the image for later use.
 
 ```
-{r, cache=TRUE, screenshot.opts=list(delay=1), fig.width=15, fig.cap="caption"}
+{r, cache=TRUE, screenshot.opts=list(delay=1), fig.width=15}
 ```
 
 ***
@@ -302,3 +311,13 @@ This example code chunks waits one second for an app to load, resizes the width 
 [Examples: PowerPoint output with R](https://github.com/sol-eng/powerpoint)
 
 [Submit an issues to rmarkdown](https://github.com/rstudio/rmarkdown/issues)
+
+
+```{r support, eval=FALSE, include=FALSE}
+library(magrittr)
+readLines("getting-started.html") %>%
+  .[grep('id="getting-started"', .):(length(.)-31)] %>%
+  gsub(' class="section level[0-9]"',"", .) %>%
+  cat(., file = "support.html", sep = "\n")
+```
+

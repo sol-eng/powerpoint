@@ -32,9 +32,17 @@ Then modify `custom-reference.pptx` in MS PowerPoint (pandoc will use the first 
 
 # Example Section Header
 
-## Example Title and Content
+## Example Title and Content with Speaker Notes
 
 Data science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge. The goal of “R for Data Science” is to help you learn the most important tools in R that will allow you to do data science.
+
+::: notes
+Data science toolchain:
+
+- *Access*
+- **Understand**
+- [Communicate]{.smallcaps} 
+:::
 
 ## Example Title and Content
 

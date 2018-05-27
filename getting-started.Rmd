@@ -14,14 +14,15 @@ output:
 <p><em>To create PowerPoint presentations with RStudio:</em></p>
 <ul>
 <li><em>Install the <a href="https://www.rstudio.com/products/rstudio/download/preview/">preview release</a> of RStudio</em></li>
-<li><em>Install the development version of <code>rmarkdown</code> by running: &gt;<code>devtools::install_github("rstudio/rmarkdown")</code>. </em></li>
+<li><em>Install the development version of <code>rmarkdown</code> by running: <code>&gt; devtools::install_github("rstudio/rmarkdown")</code>. </em></li>
 </ul>
-<p><em>Click <a href="https://github.com/sol-eng/powerpoint">here</a> for a list of examples. </em><em>Submit PowerPoint issues to <a href="https://github.com/rstudio/rmarkdown/issues"><code>rmarkdown/issues</code></a>.</em></p>
+<p><em>Click <a href="https://github.com/sol-eng/powerpoint">here</a> for a list of examples. </em><em>Submit PowerPoint issues at <a href="https://github.com/rstudio/rmarkdown/issues"><code>rmarkdown/issues</code></a>.</em></p>
 </div>
 
-# Getting started
+# Getting Started
 
-RStudio makes it easy to render PowerPoint presentations from [R Markdown](https://rmarkdown.rstudio.com/) documents. This capability is made possible by recent improvements to [Pandoc](http://pandoc.org/releases.html), `rmarkdown`, and the RStudio IDE. To use all the features of RStudio with PowerPoint output, install the [RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/) which bundles Pandoc 2.x. You should also install the development version of `rmarkdown`.
+
+You can render PowerPoint presentations from [R Markdown](https://rmarkdown.rstudio.com/) documents. This capability is made possible by recent improvements to [Pandoc](http://pandoc.org/releases.html). To use all the features of RStudio with PowerPoint output, install the [RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/) which bundles Pandoc 2.x. You should also install the development version of `rmarkdown`.
 
 ```
 devtools::install_github("rstudio/rmarkdown")
@@ -29,7 +30,7 @@ devtools::install_github("rstudio/rmarkdown")
 
 ### Open new
 
-[RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/) now offers PowerPoint as an output format for R Markdown documents:
+The [RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/) now offers PowerPoint as an output format for R Markdown documents:
 
 `New File` > `R Markdown` > `Presentation` > `PowerPoint`
 
@@ -38,7 +39,7 @@ devtools::install_github("rstudio/rmarkdown")
 
 ### Quick example
 
-To create a PowerPoint presentation from R Markdown, you specify the `powerpoint_presentation` output format in the YAML metadata of your document. 
+To create a PowerPoint presentation from R Markdown, specify the `powerpoint_presentation` output format in the YAML header. 
 
 ````markdown
 ---
@@ -82,25 +83,25 @@ plot(pressure)
 
 ### Knit to PowerPoint
 
-When you knit the R Markdown document, RStudio renders your document in the PowerPoint output format. If you are using RStudio desktop, your PowerPoint presentation will automatically open and take you back to the last slide you were on. If you are using RStudio Server, you will be prompted to download the PowerPoint presentation.
+When you knit the R Markdown document, RStudio renders your document in the PowerPoint output format. If you are using RStudio desktop, your PowerPoint presentation will automatically open and take you back to the last slide you were viewing. If you are using RStudio Server, you will be prompted to download the PowerPoint presentation file.
 
 <center><img src="img/knit2ppt.png" style="width: 200px;"/></center>
 
 <br>
 
-You can also render files programmatically. 
+You can also render files programmatically from the R console. 
 
 ```
 rmarkdown::render("in.Rmd", output_format = "powerpoint_presentation")
 ```
 
-Markdown elements are rendered as natively in PowerPoint. Manually changing the slide size or design after rendering will automatically change titles, content, tables, and other elements.
+In some cases, you might want to make manual adjustments to your PowerPoint presentation after you render it. Fortunately, markdown elements -- such as titles, text, code, tables, and other elements -- are rendered natively in PowerPoint. Manually changing the slide size or design after rendering will automatically change these elements to match the new style.
 
 ***
 
-# Markdown features
+# Markdown Features
 
-You can generate most elements supported by Pandoc’s Markdown in PowerPoint output, such as inline formatting, lists, LaTeX math expressions/equations, images, hyperlinks, bock quotations, etc. See the [R Markdown Reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) for a complete summary.
+You can generate most elements supported by [Pandoc’s Markdown](https://pandoc.org/MANUAL.html#pandocs-markdown) with the PowerPoint output including: Inline formatting; lists; LaTeX math expressions/equations; images; hyperlinks; block quotations; and more. Here are some common elements supported in PowerPoint (for a complete list see the [R Markdown Reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)).
 
 ```
 *italics* 
@@ -124,14 +125,36 @@ $$math-equation$$
 
 Additionally, the PowerPoint output format also supports these handy features:
 
-* [Columns](#columns)
 * [Templates](#templates)
+* [Columns](#columns)
 * [Speaker notes](#speaker-notes)
 * [Images and tables](#images-and-tables)
 
+### Templates
+
+The size and design of PowerPoint presentations are determined by the reference template. Pandoc ships with a default PowerPoint template that contains a blank presentation in the standard (4:3) size. If you want to change the size or design of a PowerPoint presentation, you can reference your own template with the `reference_doc` option in the YAML header.
+
+```
+---
+title: My presentation
+output: 
+  powerpoint_presentation:
+    reference_doc: template.pptx
+---
+```
+
+Any template included with a recent install of Microsoft PowerPoint (either with `.pptx` or `.potx` extension) should work, as will most templates derived from these. The specific requirement is that the template should contain the following four layouts as its first four layouts. *Note: All templates included with a recent version of PowerPoint will fit these criteria -- you can click on Layout under the Home menu to check.*
+
+**Layouts used in a template when rendering PowerPoint**
+
+1. **Title**. This layout has a placeholder for a title and a placeholder for a subtitle. This layout is used when you specify a title in the YAML header.
+2. **Section header**. This layout has a single placeholder for a section header -- content will not render on this layout. This layout is used when you specify section headers above the [slide level](structuring-the-presentation).
+3. **Title and content**. This layout has a placeholder for a title and a single placeholder for content. This layout is used for content slides specified at the [slide level](structuring-the-presentation).
+4. **Two Content**. This layout has a placehoder for a title and two placeholders for content. This layout is used when you specify two columns for a content slides at the [slide level](structuring-the-presentation). 
+
 ### Columns
 
-To put material in side by side columns, you can use a native div container with class `columns`, containing two containers with class `column`. Columns will render using the *Two Content* layout in PowerPoint.
+You can use the the *Two Content* layout to put material in side by side columns. For example, you can put text next to an image on the same slide. To use the *Two Content* layout, nest two div containers of class `column` inside one div container of class `columns`.
 
 ```
 :::::::::::::: {.columns}
@@ -144,55 +167,42 @@ contents...
 ::::::::::::::
 ```
 
-### Templates
-
-Change the slide size or design with a reference doc when the presentation is rendered.
-
-```
----
-title: My presentation
-output: 
-  powerpoint_presentation:
-    reference_doc: template.pptx
----
-```
-
-Any template included with a recent install of Microsoft PowerPoint (either with .pptx or .potx extension) should work, as will most templates derived from these. The specific requirement is that the template should contain the following four layouts as its first four layouts:
-
-1. Title. Defined by the YAML header.
-2. Section header. Break the presentation into sections. These slides have a section header but no content.
-3. Title and content. Content slide.
-4. Two Content. Content slide with two columns.
-
-All templates included with a recent version of MS PowerPoint will fit these criteria. (You can click on Layout under the Home menu to check.) You can access the default reference.pptx by running: `pandoc --print-default-data-file reference.pptx > custom-reference.pptx`
-
 ### Speaker notes
 
-Add speaker notes to slides. Speaker notes support limited formats such as bold, italics, and lists. Speaker notes will be available in handouts and presenter view.
+Add speaker notes to slides. Speaker notes support limited formats such as bold, italics, and lists. Speaker notes, of course, will be available in handouts and in presenter view.
 
 ```
 ::: notes
-This is my note.
+This is a speaker note.
 
-- It can contain Markdown
+- It can contain basic Markdown
 - like this list
+- *and inline formatting**
 :::
 ```
 
 ### Images and tables
 
-Insert static images from file or from the web. Captions will render below the image. You can add a link to the caption or to the image itself. 
+[Images](https://pandoc.org/MANUAL.html#images) will be scaled automatically to fit the slide. You can render images from file or from the web. Captions will render below the image. You can add a link to the caption or to the image itself. 
 
 ```
-![](file) # image from file
-![](URL) # image from web
+# image from file
+![](file)
 
-![caption](image) # plain image
-[![caption](image)](link) # linked image
-![[caption](link)](image) # linked caption
+# image from web
+![](URL)
+
+# linked image
+[![](image)](link)
+
+# plain caption
+![caption](image)
+
+# linked caption
+![[caption](link)](image)
 ```
 
-Use Markdown to create [tables](http://pandoc.org/MANUAL.html#tables) that render natively in PowerPoint. These tables recognize PowerPoint table designs and assume the design of whatever template is applied.
+[Tables](http://pandoc.org/MANUAL.html#tables) render natively in PowerPoint and picke up the style defined by the reference [template](#templates).
 
 ```
  manufacturer    displ   hwy     class
@@ -202,42 +212,37 @@ Use Markdown to create [tables](http://pandoc.org/MANUAL.html#tables) that rende
        dodge     2.4     24      minivan
 ```
 
-Note that images and tables will always be placed on new slides. The only elements that can coexist with an image or table on a slide are the slide header and caption. When you have a text paragraph and an image on the same slide, the image will be moved to a new slide automatically. Images will be scaled automatically to fit the slide.
+Images and tables will always be placed on new slides. The only elements that can coexist with an image or table on a slide are the slide header and caption.
+
 
 ***
 
-# Structuring the presentation
+# Structuring the Presentation
 
-By default, the slide level is the highest header level in the hierarchy that is followed immediately by content, and not another header, somewhere in the document. This default can be overridden using the `slide-level` option. The document is carved up into slides according to the following [rules](http://pandoc.org/MANUAL.html#structuring-the-slide-show):
+Your R Markdown document is carved up into slides according to the following [rules](http://pandoc.org/MANUAL.html#structuring-the-slide-show):
 
 * A horizontal rule always starts a new slide
 * A header at the slide level always starts a new slide
 * Headers below the slide level in the hierarchy create headers within a slide
 * Headers above the slide level in the hierarchy create *section headers*
-* A title page is constructed automatically from the document’s title block
+* A *title page* is constructed automatically from the document’s title block
 
-These rules are designed to support many different styles of slide show. If you don’t care about structuring your slides into sections and subsections, you can just use level 1 headers for each slide. (In that case, level 1 will be the slide level.) But you can also structure the slide show into sections.
-
-### Example
-
-This presentation sets `slide_level: 3`. The result will be a presentation with three slides: (1) a section header slide; (2) a content slide for the comment, "By default..."; and (3) a title and content slide for the rest of the content. Without the override this presentation would have been rendered to a single slide. The default rules would set `slide_level: 1` because the section header is immediately followed by content.
+[Headers](https://pandoc.org/MANUAL.html#headers) define a document's hierarchy. In order to structure a PowerPoint presentation, Pandoc needs to determine which header level should be used for the slide level. By default, the highest header level in the hierarchy that is followed immediately by content somewhere in the document is set as the slide level. For example, the following document sets the slide level to 3, because the level 3 header is the first immediately followed by content. 
 
 ```
----
-output: 
-  powerpoint_presentation:
-    slide_level: 3
----
+# Section header (First slide)
 
-# Section Header
-By default, content here would normally set this as the slide level 
+## Section header (Second slide)
 
-### Title and Content Slide
-The override sets this as the new slide level
+### Title (Third slide)
+Content (which sets `slide level: 3`)
 
-#### Bold text
-Text
+#### Content header (Third slide)
+
+##### Content header (Third slide)
 ```
+
+You can override the default slide level by using the `slide-level` option in the YAML header. If you don’t care about structuring your slides into sections, you can use level 1 headers to create all your slides.
 
 ***
 
@@ -247,7 +252,7 @@ Text
 
 ### Table output
 
-By default data frames and matrices are output as they would be in the R terminal (in a monospaced font). However, if you prefer that data be displayed as a PowerPoint table you can use the `knitr::kable` function. Table output from `knitr:kable` will assume the table design of whatever template is applied.
+By default data frames and matrices are output as they would be in the R terminal (in a monospaced font). However, if you prefer that data be displayed as a PowerPoint table you can use the `knitr::kable` function. Table output from `knitr:kable` will assume the table design of whatever template you use.
 
 ```
 knitr::kable(mtcars)
@@ -263,19 +268,17 @@ plot(cars)
 
 ### Webshots
 
-Capture [HTML Widgets](http://www.htmlwidgets.org/) and [Shiny apps](http://shiny.rstudio.com/) with the [`webshot`](https://cran.r-project.org/web/packages/webshot/vignettes/intro.html) package. With the [`webshot`](https://cran.r-project.org/web/packages/webshot/vignettes/intro.html) package, you can embed a screenshot of a Shiny application that links viewers to a live application hosted on RStudio Connect, Shiny Server, or Shinyapps.io.
-
-Install the [`webshot`](https://cran.r-project.org/web/packages/webshot/vignettes/intro.html) package and [phantomjs](http://phantomjs.org/). The [`webshot`](https://cran.r-project.org/web/packages/webshot/vignettes/intro.html) package will automatically take a screenshot of an interactive HTML Widget and insert it into your presentation. Use `knitr::include_app` to include a Shiny application in your presentation. Viewers can click the image in PowerPoint to link back to the hosted app online.
+You can capture [HTML Widgets](http://www.htmlwidgets.org/) and [Shiny apps](http://shiny.rstudio.com/) with the [`webshot`](https://cran.r-project.org/web/packages/webshot/vignettes/intro.html) package and [phantomjs](http://phantomjs.org/). The [`webshot`](https://cran.r-project.org/web/packages/webshot/vignettes/intro.html) package will automatically take a screenshot of an interactive HTML Widget and insert it into your presentation. The `knitr::include_app` function will embed a screenshot of a Shiny application that links viewers to a live application hosted on RStudio Connect, Shiny Server, or Shinyapps.io.
 
 ```
 # Install
 install.packages("webshot")
 webshot::install_phantomjs()
 
-# HTML Widget
+# Capture an HTML Widget
 dygraphs::dygraph(nhtemp, main = "New Haven Temperatures")
 
-# Shiny
+# Capture a Shiny app
 knitr::include_app('https://gallery.shinyapps.io/goog-trend-index/')
 ```
 
@@ -283,12 +286,12 @@ knitr::include_app('https://gallery.shinyapps.io/goog-trend-index/')
 
 These code [chunk options](https://yihui.name/knitr/options/) can be especially useful when rendering PowerPoint output. 
 
-* `cache`. Used to save time by caching plots and other output. If document rendering becomes time consuming due to long computations or plots that are expensive to generate you can use knitr caching to improve performance.
-* `screenshot.opts`. Used to delay a webshot. An arbitrary URL may take a long time to load. You can increase the delay to allow apps time to load before taking a webshot.
-* `fig.width` and `fig.height`. Used to size a plot. Has to be numeric in inches. Default is 7.
-* `fig.cap`. Used to add a caption to an image. Captions will render below the image.
+* `cache`. Save time by caching plots and other output. If document rendering becomes time consuming due to long computations or plots that are expensive to generate you can use knitr caching to improve performance.
+* `screenshot.opts`. Delay a webshot capture. An arbitrary URL may take a long time to load. You can increase the delay in order to give apps enough time to load before taking a webshot.
+* `fig.width` and `fig.height`. Size a plot. This should be numeric in inches. Default is 7.
+* `fig.cap`. Add a caption to an image. Captions will render below the image.
 
-This example code chunks waits one second for an app to load, resizes the width to 15 inches, and caches the image for later use.
+In this example the code chunk will wait one second for an app to load, resize the width to 15 inches, and cache the image for later use.
 
 ```
 {r, cache=TRUE, screenshot.opts=list(delay=1), fig.width=15}
@@ -296,27 +299,20 @@ This example code chunks waits one second for an app to load, resizes the width 
 
 ***
 
-# References
+# Getting Help
 
-[Markdown Basics](https://rmarkdown.rstudio.com/authoring_basics.html)
+Click [here](https://github.com/sol-eng/powerpoint) for a list of examples. Submit PowerPoint issues to [rmarkdown/issues](https://github.com/rstudio/rmarkdown/issues). For more details, see these guides:
 
-[Pandoc Markdown](https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html)
-
-[R Code Chunks](https://rmarkdown.rstudio.com/authoring_rcodechunks.html)
-
-[Chunk Options](https://yihui.name/knitr/options/)
-
-[Pandoc Manual](http://pandoc.org/MANUAL.html)
-
-[Examples: PowerPoint output with R](https://github.com/sol-eng/powerpoint)
-
-[Submit an issues to rmarkdown](https://github.com/rstudio/rmarkdown/issues)
-
+* [Markdown Basics](https://rmarkdown.rstudio.com/authoring_basics.html)
+* [Pandoc Markdown](https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html)
+* [R Code Chunks](https://rmarkdown.rstudio.com/authoring_rcodechunks.html)
+* [Chunk Options](https://yihui.name/knitr/options/)
+* [Pandoc User's Guide](http://pandoc.org/MANUAL.html)
 
 ```{r support, eval=FALSE, include=FALSE}
 library(magrittr)
 readLines("getting-started.html") %>%
-  .[grep('id="header"', .):(length(.)-31)] %>%
+  .[grep("padding: 20px 47px", .):(length(.)-31)] %>%
   gsub(' class="section level[0-9]"',"", .) %>%
   cat(., file = "support.html", sep = "\n")
 ```

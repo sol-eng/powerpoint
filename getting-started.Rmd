@@ -107,7 +107,7 @@ You can generate most elements supported by [Pandoc’s Markdown](https://pandoc
 *italics* 
 **bold** 
 ~~strikeout~~ 
-~subscipt~
+~subscript~
 ^superscripts^
 [small caps]{.smallcaps} 
 `verbatim`
@@ -150,7 +150,7 @@ Any template included with a recent install of Microsoft PowerPoint (either with
 1. **Title**. This layout has a placeholder for a title and a placeholder for a subtitle. This layout is used when you specify a title in the YAML header.
 2. **Section header**. This layout has a single placeholder for a section header -- content will not render on this layout. This layout is used when you specify section headers above the [slide level](#structuring-the-presentation).
 3. **Title and content**. This layout has a placeholder for a title and a single placeholder for content. This layout is used for content slides specified at the [slide level](#structuring-the-presentation).
-4. **Two Content**. This layout has a placehoder for a title and two placeholders for content. This layout is used when you specify two columns for a content slides at the [slide level](#structuring-the-presentation). 
+4. **Two Content**. This layout has a placeholder for a title and two placeholders for content. This layout is used when you specify two columns for a content slides at the [slide level](#structuring-the-presentation). 
 
 ### Columns
 
@@ -219,21 +219,21 @@ Images and tables will always be placed on new slides. The only elements that ca
 
 # Structuring the Presentation
 
-Your R Markdown document is carved up into slides according to the following [rules](http://pandoc.org/MANUAL.html#structuring-the-slide-show):
+You can structure your presentation with section and content slides using a hierarchy of markdown [headers](https://pandoc.org/MANUAL.html#headers). The slide level is the header level that creates content slides from the *Title and Content* or *Two Content* layouts. Your R Markdown document is carved up into slides according to the following [rules](http://pandoc.org/MANUAL.html#structuring-the-slide-show):
 
-* A horizontal rule always starts a new slide
-* A header at the slide level always starts a new slide
-* Headers below the slide level in the hierarchy create headers within a slide
+* Headers at the slide level always starts a new slide
 * Headers above the slide level in the hierarchy create *section headers*
+* Headers below the slide level in the hierarchy create headers within a slide
+* A horizontal rule always starts a new slide
 * A *title page* is constructed automatically from the document’s title block
 
-[Headers](https://pandoc.org/MANUAL.html#headers) define a document's hierarchy. In order to structure a PowerPoint presentation, Pandoc needs to determine which header level should be used for the slide level. By default, the highest header level in the hierarchy that is followed immediately by content somewhere in the document is set as the slide level. For example, by default the slide level of this document is 3 because the level 3 header is the first to be followed immediately by content. 
+In order to structure a PowerPoint presentation, Pandoc needs to determine which header level should be used for the slide level. By default, Pandoc sets the slide level to the highest header level in the hierarchy that is followed immediately by content somewhere in the document.
 
 ```
 ---
 output:
   powerpoint_presentation:
-    slide_level: 3 # optional
+    slide_level: 3 # use this to override default
 ---
 
 # Section header (First slide)
@@ -241,14 +241,14 @@ output:
 ## Section header (Second slide)
 
 ### Title (Third slide)
-Content (sets slide level by default)
+Content (this sets the default slide level)
 
 #### Content header (Third slide)
 
 ##### Content header (Third slide)
 ```
 
-You can override the default slide level by using the `slide_level` option in the YAML header. If you don’t want to structure your slides into sections, you can use level 1 headers to create all your slides.
+In the document above, the default slide level is 3 because the level 3 header is the first to be followed by content. You can override the default slide level by setting the `slide_level` option in the YAML header. *Note: If you don’t want to structure your slides into sections, you can just use level 1 headers to create all your slides.*
 
 ***
 

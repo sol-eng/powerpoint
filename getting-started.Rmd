@@ -22,7 +22,7 @@ output:
 # Getting Started
 
 
-You can render PowerPoint presentations from [R Markdown](https://rmarkdown.rstudio.com/) documents. This capability is made possible by recent improvements to [Pandoc](http://pandoc.org/releases.html). To use all the features of RStudio with PowerPoint output, install the [RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/) which bundles Pandoc 2.x. You should also install the development version of `rmarkdown`.
+You can render Microsoft PowerPoint presentations from [R Markdown](https://rmarkdown.rstudio.com/) documents. This capability is made possible by recent improvements to [Pandoc](http://pandoc.org/releases.html), which converts files from one markup format into another. To use all the features of RStudio with PowerPoint output, install the [RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/) which bundles Pandoc 2.x. You should also install the development version of `rmarkdown`.
 
 ```
 devtools::install_github("rstudio/rmarkdown")
@@ -83,7 +83,7 @@ plot(pressure)
 
 ### Knit to PowerPoint
 
-When you knit the R Markdown document, RStudio renders your document in the PowerPoint output format. If you are using RStudio desktop, your PowerPoint presentation will automatically open and take you back to the last slide you were viewing. If you are using RStudio Server, you will be prompted to download the PowerPoint presentation file.
+When you knit an R Markdown document, RStudio renders your document in the PowerPoint output format. If you are using RStudio Desktop, your PowerPoint presentation will automatically open and take you back to the last slide you were viewing. If you are using RStudio Server, you will be prompted to download the PowerPoint presentation file.
 
 <center><img src="img/knit2ppt.png" style="width: 200px;"/></center>
 
@@ -95,7 +95,7 @@ You can also render files programmatically from the R console.
 rmarkdown::render("in.Rmd", output_format = "powerpoint_presentation")
 ```
 
-In some cases, you might want to make manual adjustments to your PowerPoint presentation after you render it. Fortunately, markdown elements -- such as titles, text, code, tables, and other elements -- are rendered natively in PowerPoint. Manually changing the slide size or design after rendering will automatically change these elements to match the new style.
+In some cases, you might want to make manual adjustments to your PowerPoint presentation after you render it. Fortunately, markdown elements -- such as titles, text, code, and tables -- are rendered natively in PowerPoint. Manually changing the slide size or design after rendering will automatically change these elements to match the new style.
 
 ***
 
@@ -104,11 +104,11 @@ In some cases, you might want to make manual adjustments to your PowerPoint pres
 You can generate most elements supported by [Pandoc’s Markdown](https://pandoc.org/MANUAL.html#pandocs-markdown) with the PowerPoint output including: Inline formatting; lists; LaTeX math expressions/equations; images; hyperlinks; block quotations; and more. Here are some common elements supported in PowerPoint (for a complete list see the [R Markdown Reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)).
 
 ```
-*italics* 
+*italic* 
 **bold** 
 ~~strikeout~~ 
 ~subscript~
-^superscripts^
+^superscript^
 [small caps]{.smallcaps} 
 `verbatim`
 
@@ -143,9 +143,9 @@ output:
 ---
 ```
 
-Any template included with a recent install of Microsoft PowerPoint (either with `.pptx` or `.potx` extension) should work, as will most templates derived from these. The specific requirement is that the template should contain the following four layouts as its first four layouts. *Note: All templates included with a recent version of PowerPoint will fit these criteria -- you can click on Layout under the Home menu to check.*
+Any template included with a recent install of PowerPoint (either with `.pptx` or `.potx` extension) should work, as will most templates derived from these. The specific requirement is that the template should contain the following four layouts as its first four layouts. *Note: All templates included with a recent version of PowerPoint will fit these criteria -- you can click on Layout under the Home menu to check.*
 
-**Layouts used in a template when rendering PowerPoint**
+#### Layouts
 
 1. **Title**. This layout has a placeholder for a title and a placeholder for a subtitle. This layout is used when you specify a title in the YAML header.
 2. **Section header**. This layout has a single placeholder for a section header -- content will not render on this layout. This layout is used when you specify section headers above the [slide level](#structuring-the-presentation).
@@ -169,7 +169,7 @@ contents...
 
 ### Speaker notes
 
-Add speaker notes to slides. Speaker notes support limited formats such as bold, italics, and lists. Speaker notes, of course, will be available in handouts and in presenter view.
+You can add speaker notes to slides. Speaker notes support limited formats such as bold, italics, and lists. Speaker notes, of course, will be available in handouts and in presenter view.
 
 ```
 ::: notes
@@ -248,17 +248,17 @@ Content (this sets the default slide level)
 ##### Content header (Third slide)
 ```
 
-In the document above, the default slide level is 3 because the level 3 header is the first to be followed by content. You can override the default slide level by setting the `slide_level` option in the YAML header. *Note: If you don’t want to structure your slides into sections, you can just use level 1 headers to create all your slides.*
+In the document above, the default slide level is 3 because the level 3 header is the first to be followed by content. You can override the default slide level by setting the `slide_level` option in the YAML header. *Note: If you do not want to structure your slides into sections, you can just use level 1 headers to create all your slides.*
 
 ***
 
 # R Code Chunks
 
-[R Code Chunks](https://rmarkdown.rstudio.com/authoring_rcodechunks.html) can be used as a means to render R output into documents or to simply display code for illustration. Pandoc supports syntax highlighting for R code chunks.
+[R Code Chunks](https://rmarkdown.rstudio.com/authoring_rcodechunks.html) can be used as a means to render R output into documents or to simply display code for illustration. Source code will render with syntax highlighting inline with other markdown text in your document. You may choose to remove source code from your PowerPoint presentation by setting `echo=FALSE` in the code chunk options.
 
 ### Table output
 
-By default data frames and matrices are output as they would be in the R terminal (in a monospaced font). However, if you prefer that data be displayed as a PowerPoint table you can use the `knitr::kable` function. Table output from `knitr:kable` will assume the table design of whatever template you use.
+By default data frames and matrices are output as they would be in the R terminal (in a monospaced font). However, if you prefer that data be displayed as a PowerPoint table you can use the `knitr::kable` function. Table output from `kable` will assume the table design of whatever template you use.
 
 ```
 knitr::kable(mtcars)
@@ -292,6 +292,7 @@ knitr::include_app('https://gallery.shinyapps.io/goog-trend-index/')
 
 These code [chunk options](https://yihui.name/knitr/options/) can be especially useful when rendering PowerPoint output. 
 
+* `echo`. Control R source code in the output file. Set to `FALSE` if you do not want your souce code included in your PowerPoint presentation.
 * `cache`. Save time by caching plots and other output. If document rendering becomes time consuming due to long computations or plots that are expensive to generate you can use knitr caching to improve performance.
 * `screenshot.opts`. Delay a webshot capture. An arbitrary URL may take a long time to load. You can increase the delay in order to give apps enough time to load before taking a webshot.
 * `fig.width` and `fig.height`. Size a plot. This should be numeric in inches. Default is 7.

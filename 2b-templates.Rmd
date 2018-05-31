@@ -2,7 +2,7 @@
 title: "Templates"
 output: 
   powerpoint_presentation:
-    reference_doc: template.pptx
+    reference_doc: template.potx
 ---
 
 ### Overview

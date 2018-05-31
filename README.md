@@ -21,14 +21,3 @@ Most standard markdown formats are supported in the PowerPoint output (e.g. list
 * Speaker notes
 
 See the [Pandoc manual](http://pandoc.org/MANUAL.html) for specific details. Note: If you want to change the slide size or design you should make those changes in a PowerPoint template and then include `reference_doc: mytemplate.pptx` in the YAML header.
-
-### Examples
-
-This project contains several example presentations that demonstrate various PowerPoint capabilities. Start with the [PowerPoint Intro](http://colorado.rstudio.com:3939/powerpoint/getting-started.html) which gives an overview of Pandoc, R Markdown, and RStudio features.
-
-* **Hello World**. Getting started with a simple example.
-* **Widscreen Template**. Change the slide size and design of a presentation.
-* **Slide Level**. Explicitly define the slide level.
-* **Shiny Webshot**. Create a webshot of a Shiny app.
-* **R Admin**. An example presentation from rstudio::conf 2018.
-

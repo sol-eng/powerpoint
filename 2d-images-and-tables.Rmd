@@ -1,0 +1,76 @@
+---
+title: "Images and Tables"
+output: powerpoint_presentation
+---
+
+### Overview
+
+* Images and tables will always be placed on new slides.
+* The only elements that can coexist with an image or table on a slide are the slide header and caption.
+
+### Images
+
+* Images will be scaled automatically to fit the slide. 
+* You can render images from file or from the web. 
+* Captions will render below the image. 
+* You can add a link to the caption or to the image itself.
+
+### Examples
+
+```
+# image from file
+![](file)
+
+# image from web
+![](URL)
+
+# linked image
+[![](image)](link)
+
+# plain caption
+![caption](image)
+
+# linked caption
+![[caption](link)](image)
+```
+
+### Plain Image
+
+![](img/r4ds.png)
+
+### Linked image
+
+[![Click to open](img/r4ds.png)](http://r4ds.had.co.nz/)
+
+### Linked caption
+
+![[R for Data Science](http://r4ds.had.co.nz/)](img/r4ds.png)
+
+### Web image
+
+![](https://www.rstudio.com/wp-content/uploads/2014/07/RStudio-Logo-Blue-Gray.png)
+
+### Tables
+
+Tables render natively in PowerPoint and pick up the style defined by the reference template.
+
+```
+
+ manufacturer    displ   hwy     class
+-------------    ------  -----  ---------
+        audi     1.8     29      compact
+   chevrolet     5.3     20        suv
+       dodge     2.4     24      minivan
+```
+
+### Example
+
+ manufacturer    displ   hwy     class
+-------------    ------  -----  ---------
+        audi     1.8     29      compact
+   chevrolet     5.3     20        suv
+       dodge     2.4     24      minivan
+
+
+
+

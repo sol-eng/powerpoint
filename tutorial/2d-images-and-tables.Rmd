@@ -36,15 +36,15 @@ output: powerpoint_presentation
 
 ### Plain Image
 
-![](img/r4ds.png)
+![](r4ds.png)
 
 ### Linked image
 
-[![Click to open](img/r4ds.png)](http://r4ds.had.co.nz/)
+[![Click to open](r4ds.png)](http://r4ds.had.co.nz/)
 
 ### Linked caption
 
-![[R for Data Science](http://r4ds.had.co.nz/)](img/r4ds.png)
+![[R for Data Science](http://r4ds.had.co.nz/)](r4ds.png)
 
 ### Web image
 

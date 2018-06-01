@@ -1,7 +1,5 @@
 ---
-title: "Rendering PowerPoint Presentations with R Markdown"
-author: "Nathan Stephens"
-date: "`r Sys.Date()`"
+title: "[Rendering PowerPoint Presentations with R Markdown](https://support.rstudio.com/hc/en-us/articles/360004672913-Rendering-PowerPoint-presentations-with-RStudio)"
 output:
   html_document:
     toc: true
@@ -236,16 +234,17 @@ output:
     slide_level: 3 # use this to override default
 ---
 
-# Section header (First slide)
+# Section header (Slide 1)
 
-## Section header (Second slide)
+## Section header (Slide 2)
 
-### Title (Third slide)
-Content (this sets the default slide level)
+### Title (Slide 3)
 
-#### Content header (Third slide)
+Content (this content sets the default slide level)
 
-##### Content header (Third slide)
+#### Content header (Slide 3)
+
+##### Content header (Slide 3)
 ```
 
 In the document above, the default slide level is 3 because the level 3 header is the first to be followed by content. You can override the default slide level by setting the `slide_level` option in the YAML header. *Note: If you do not want to structure your slides into sections, you can just use level 1 headers to create all your slides.*
@@ -318,9 +317,9 @@ Click [here](https://github.com/sol-eng/powerpoint) for a list of examples. Subm
 
 ```{r support, eval=FALSE, include=FALSE}
 library(magrittr)
-readLines("getting-started.html") %>%
+readLines("rendering-powerpoint.html") %>%
   .[grep("padding: 20px 47px", .):(length(.)-31)] %>%
   gsub(' class="section level[0-9]"',"", .) %>%
-  cat(., file = "support.html", sep = "\n")
+  cat(., file = "rendering-powerpoint.html", sep = "\n")
 ```
 

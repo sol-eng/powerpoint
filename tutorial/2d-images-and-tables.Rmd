@@ -8,6 +8,8 @@ output: powerpoint_presentation
 * Images and tables will always be placed on new slides.
 * The only elements that can coexist with an image or table on a slide are the slide header and caption.
 
+# Images
+
 ### Images
 
 * Images will be scaled automatically to fit the slide. 
@@ -24,31 +26,37 @@ output: powerpoint_presentation
 # image from web
 ![](URL)
 
-# linked image
-[![](image)](link)
-
 # plain caption
 ![caption](image)
 
 # linked caption
 ![[caption](link)](image)
+
+# linked image
+[![](image)](link)
 ```
 
-### Plain Image
+### Image from file
 
 ![](r4ds.png)
 
-### Linked image
+### Image from web
 
-[![Click to open](r4ds.png)](http://r4ds.had.co.nz/)
+![](https://www.rstudio.com/wp-content/uploads/2014/07/RStudio-Logo-Blue-Gray.png)
+
+### Plain caption
+
+![R for data science](r4ds.png)
 
 ### Linked caption
 
-![[R for Data Science](http://r4ds.had.co.nz/)](r4ds.png)
+![[R for data science](http://r4ds.had.co.nz/)](r4ds.png)
 
-### Web image
+### Linked image
 
-![](https://www.rstudio.com/wp-content/uploads/2014/07/RStudio-Logo-Blue-Gray.png)
+[![Click to open R for data science](r4ds.png)](http://r4ds.had.co.nz/)
+
+# Tables
 
 ### Tables
 
@@ -61,6 +69,8 @@ Tables render natively in PowerPoint and pick up the style defined by the refere
         audi     1.8     29      compact
    chevrolet     5.3     20        suv
        dodge     2.4     24      minivan
+
+Table:  Demonstration of simple table syntax.
 ```
 
 ### Example
@@ -71,6 +81,4 @@ Tables render natively in PowerPoint and pick up the style defined by the refere
    chevrolet     5.3     20        suv
        dodge     2.4     24      minivan
 
-
-
-
+Table:  Demonstration of simple table syntax.

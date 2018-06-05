@@ -70,7 +70,7 @@ Tables render natively in PowerPoint and pick up the style defined by the refere
    chevrolet     5.3     20        suv
        dodge     2.4     24      minivan
 
-Table:  Demonstration of simple table syntax.
+Table: Simple table syntax and caption.
 ```
 
 ### Example
@@ -81,4 +81,4 @@ Table:  Demonstration of simple table syntax.
    chevrolet     5.3     20        suv
        dodge     2.4     24      minivan
 
-Table:  Demonstration of simple table syntax.
+Table: Simple table syntax and caption.

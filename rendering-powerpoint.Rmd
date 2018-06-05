@@ -208,6 +208,8 @@ This is a speaker note.
         audi     1.8     29      compact
    chevrolet     5.3     20        suv
        dodge     2.4     24      minivan
+
+Table: Simple table syntax and caption.
 ```
 
 Images and tables will always be placed on new slides. The only elements that can coexist with an image or table on a slide are the slide header and caption.

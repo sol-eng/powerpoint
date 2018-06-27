@@ -88,7 +88,7 @@ dygraph(nhtemp, main = "New Haven Temperatures") %>%
 
 ### Shiny App Webshot 
 
-```{r cache=TRUE, screenshot.opts=list(delay=1), echo=FALSE, fig.cap="Click image to open"}
+```{r cache=TRUE, screenshot.opts=list(delay=5), echo=FALSE, fig.cap="Click image to open"}
 knitr::include_app('https://gallery.shinyapps.io/goog-trend-index/')
 ```
 

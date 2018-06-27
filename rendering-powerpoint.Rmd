@@ -12,7 +12,7 @@ output:
 <p><em>To create PowerPoint presentations with RStudio:</em></p>
 <ul>
 <li><em>Install the <a href="https://www.rstudio.com/products/rstudio/download/preview/">preview release</a> of RStudio</em></li>
-<li><em>Install the development version of <code>rmarkdown</code> by running: <code>&gt;&nbsp;devtools::install_github("rstudio/rmarkdown")</code>. </em></li>
+<li><em>Install the latest version of <code>rmarkdown</code> from CRAN</em></li>
 </ul>
 <p><em>Click <a href="https://github.com/sol-eng/powerpoint">here</a> for a list of examples. </em><em>Submit PowerPoint issues at <a href="https://github.com/rstudio/rmarkdown/issues"><code>rmarkdown/issues</code></a>.</em></p>
 </div>

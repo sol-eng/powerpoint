@@ -1,6 +1,6 @@
 ---
 title: "Templates"
-output: 
+output:
   powerpoint_presentation:
     reference_doc: template.potx
 ---

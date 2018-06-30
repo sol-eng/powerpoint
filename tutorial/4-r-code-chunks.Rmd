@@ -3,6 +3,10 @@ title: "R Code Chunks"
 output: powerpoint_presentation
 ---
 
+```{r, include=FALSE}
+if (is.null(webshot:::find_phantom())) webshot::install_phantomjs()
+```
+
 ### Overview
 
 * R Code Chunks can be used as a means to render R output into documents or to simply display code for illustration. 

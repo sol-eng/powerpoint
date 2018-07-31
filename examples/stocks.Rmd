@@ -1,6 +1,8 @@
 ---
 title: "Stock Report"
-output: powerpoint_presentation
+output:
+  powerpoint_presentation:
+    reference_doc: rstudio-template.potx
 params:
   symbol: TSLA
   start:

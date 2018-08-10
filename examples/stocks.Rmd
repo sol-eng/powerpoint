@@ -2,7 +2,7 @@
 title: "Stock Report"
 output:
   powerpoint_presentation:
-    reference_doc: rstudio-template.potx
+    reference_doc: rstudio-template.pptx
 params:
   symbol: TSLA
   start:
@@ -15,7 +15,7 @@ params:
     input: date
 ---
 
-```{r setup, echo=FALSE, message=FALSE}
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyquant)
 dat <- tq_get(params$symbol, get = "stock.prices", from = params$start, to = params$end)
@@ -42,7 +42,7 @@ Data were analyzed using these packages:
 
 ### Price History
 
-```{r}
+```{r, fig.cap=paste("Stock prices for", params$symbol)}
 dat %>%
     ggplot(aes(x = date, y = close)) +
     geom_candlestick(aes(open = open, high = high, low = low, close = close),
@@ -68,7 +68,7 @@ dat %>%
 `r params$symbol` trading volume was `r format(curr$volume, big.mark = ",", scientific = FALSE)` shares on `r params$end`. Average trading volume over this time period was `r format(mean(round(dat$volume)), big.mark = ",", scientific = FALSE)` shares.
 :::
 ::: {.column}
-```{r}
+```{r, fig.cap=paste("Trading volume for", params$symbol)}
 ggplot(dat, aes(date, volume)) +
   geom_bar(stat="Identity") +
   labs(title = paste(params$symbol, "Volume"), y = "Volume", x = "") +

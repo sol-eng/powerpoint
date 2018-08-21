@@ -1,5 +1,6 @@
 ---
 title: "Stock Report"
+subtitle: "Summary"
 output:
   powerpoint_presentation:
 #    reference_doc: rstudio-template.pptx

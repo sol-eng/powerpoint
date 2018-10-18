@@ -14,16 +14,16 @@ output:
 <li><em>Install the <a href="https://www.rstudio.com/products/rstudio/download/preview/">preview release</a> of RStudio</em></li>
 <li><em>Install the latest version of <code>rmarkdown</code> from CRAN</em></li>
 </ul>
-<p><em>Click <a href="https://github.com/sol-eng/powerpoint">here</a> for a list of examples. </em><em>Submit PowerPoint issues at <a href="https://github.com/rstudio/rmarkdown/issues"><code>rmarkdown/issues</code></a>.</em></p>
+<p><em>See <a href="https://github.com/sol-eng/powerpoint">Examples</a> or <a href="https://support.rstudio.com/hc/en-us/articles/360006283914">Troubleshooting</a> for more info. Submit PowerPoint issues at <a href="https://github.com/rstudio/rmarkdown/issues"><code>rmarkdown/issues</code></a>.</em></p>
 </div>
 
 # Getting Started
 
 
-You can render Microsoft PowerPoint presentations from [R Markdown](https://rmarkdown.rstudio.com/) documents. This capability is made possible by recent improvements to [Pandoc](http://pandoc.org/releases.html), which converts files from one markup format into another. To use all the features of RStudio with PowerPoint output, install the [RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/) which bundles Pandoc 2.x. You should also install the development version of `rmarkdown`.
+You can render Microsoft PowerPoint presentations from [R Markdown](https://rmarkdown.rstudio.com/) documents. This capability is made possible by recent improvements to [Pandoc](http://pandoc.org/releases.html), which converts files from one markup format into another. To use all the features of RStudio with PowerPoint output, install the [RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/) which bundles Pandoc 2.x. You should also install the latest version of `rmarkdown`.
 
 ```
-devtools::install_github("rstudio/rmarkdown")
+install.packages("rstudio/rmarkdown")
 ```
 
 ### Open new
@@ -311,6 +311,7 @@ In this example the code chunk will wait one second for an app to load, resize t
 
 Click [here](https://github.com/sol-eng/powerpoint) for a list of examples. Submit PowerPoint issues to [rmarkdown/issues](https://github.com/rstudio/rmarkdown/issues). For more details, see these guides:
 
+* [Troubleshooting PowerPoint Output](https://support.rstudio.com/hc/en-us/articles/360006283914)
 * [Markdown Basics](https://rmarkdown.rstudio.com/authoring_basics.html)
 * [Pandoc Markdown](https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html)
 * [R Code Chunks](https://rmarkdown.rstudio.com/authoring_rcodechunks.html)

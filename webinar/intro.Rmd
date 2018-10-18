@@ -1,5 +1,5 @@
 ---
-title: "Rendering PowerPoint Presentations with R Markdown"
+title: "Make PowerPoint Presentations with R Markdown"
 subtitle: "An Introduction"
 output:
   powerpoint_presentation:

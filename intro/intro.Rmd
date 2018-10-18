@@ -60,7 +60,16 @@ output:
 
 ## We are combining two great things
 
-![The Rheese's Peanut Butter Cup of publishing](img/rpbc.png)
+![Think of it as the Rheese's Peanut Butter Cup of presentations](img/rpb2.png)
+
+## If you don't want to use R Markdown
+
+You can still use popular R packages
+
+* ReportRs
+* OfficeR
+* R2PPT (windows only?)
+* Displayr
 
 # Demo: Create a PowerPoint Presentation with RStudio
 
@@ -146,30 +155,64 @@ Render programmatically
 :::
 ::::::::::::::
 
-## Use cases
+## Supports most markdown elements
 
-Render output and customize slides
+Standard elements:
+
+* Text formats
+* Lists
+* Math expressions
+* Hyperlinks
+
+And also these nifty features:
+
+* Templates
+* Columns
+* Tables and images with captions
+* Speaker notes
+
+## Supports R Code Chunks (of course!)
+
+Control output with R code chunks and chunk options.
+
+* Verbatim output
+* Tables
+* Plots
+* Webshots
+
+
+# Demos
+
+## 1. Render and customize
 
 * Output visualizations of your analysis
 * Output ggplot
 * Create webshots of shiny
 
-Programmatically render output and distribute
+## 2. Programmatically render and distribute
 
-* Weekly report
+* Example: Weekly report
+* Shiny app exists
+* Webshots and link
+* Publish to RStudio Connect
+* Send email
 
-## Using
+# Troubleshooting
 
-### See: `rendering-powerpoint.Rmd`
+## Common issues
 
-### Demo examples and show tutorial
+* Why does my PowerPoint presentation not open properly?
+* How do I put an image and text on the same slide?
+* How do I control the placement of images and text?
+* And other things supported and not supported
+* How do I structure my presentation?
 
-### Where to get help?
+## Where to get help
 
-### Support.rstudio.com
+* Getting started [link](https://support.rstudio.com/hc/en-us/articles/360004672913-Rendering-PowerPoint-Presentations-with-RStudio)
+* Tutorials [link](https://github.com/sol-eng/powerpoint)
+* R Markdown: The Definitive Guide [link](https://bookdown.org/yihui/rmarkdown/powerpoint-presentation.html)
+* Troubleshooting [link](https://support.rstudio.com/hc/en-us/articles/360006283914)
+* Submitting issues [link](https://github.com/rstudio/rmarkdown/issues)
 
-### rmarkdown.rstudio.com?
-
-### github repos
-
-### Publish to RSC
+# End

@@ -23,7 +23,7 @@ output:
 You can render Microsoft PowerPoint presentations from [R Markdown](https://rmarkdown.rstudio.com/) documents. This capability is made possible by recent improvements to [Pandoc](http://pandoc.org/releases.html), which converts files from one markup format into another. To use all the features of RStudio with PowerPoint output, install the [RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/) which bundles Pandoc 2.x. You should also install the latest version of `rmarkdown`.
 
 ```
-install.packages("rstudio/rmarkdown")
+install.packages("rmarkdown")
 ```
 
 ### Open new
@@ -123,61 +123,10 @@ $$math-equation$$
 
 Additionally, the PowerPoint output format also supports these handy features:
 
-* [Templates](#templates)
+* [Images and tables](#images-and-tables)
 * [Columns](#columns)
 * [Speaker notes](#speaker-notes)
-* [Images and tables](#images-and-tables)
-
-### Templates
-
-The size and design of PowerPoint presentations are determined by the reference template. Pandoc ships with a default PowerPoint template that contains a blank presentation in the standard (4:3) size. If you want to change the size or design of a PowerPoint presentation, you can reference your own template with the `reference_doc` option in the YAML header.
-
-```
----
-title: My presentation
-output: 
-  powerpoint_presentation:
-    reference_doc: template.pptx
----
-```
-
-Any template included with a recent install of PowerPoint (either with `.pptx` or `.potx` extension) should work, as will most templates derived from these. The specific requirement is that the template should contain the following four layouts as its first four layouts. *Note: All templates included with a recent version of PowerPoint will fit these criteria -- you can click on Layout under the Home menu to check.*
-
-#### Layouts
-
-1. **Title**. This layout has a placeholder for a title and a placeholder for a subtitle. This layout is used when you specify a title in the YAML header.
-2. **Section header**. This layout has a single placeholder for a section header -- content will not render on this layout. This layout is used when you specify section headers above the [slide level](#structuring-the-presentation).
-3. **Title and content**. This layout has a placeholder for a title and a single placeholder for content. This layout is used for content slides specified at the [slide level](#structuring-the-presentation).
-4. **Two Content**. This layout has a placeholder for a title and two placeholders for content. This layout is used when you specify two columns for a content slides at the [slide level](#structuring-the-presentation). 
-
-### Columns
-
-You can use the the *Two Content* layout to put material in side by side columns. For example, you can put text next to an image on the same slide. To use the *Two Content* layout, nest two div containers of class `column` inside one div container of class `columns`.
-
-```
-:::::::::::::: {.columns}
-::: {.column}
-contents...
-:::
-::: {.column}
-contents...
-:::
-::::::::::::::
-```
-
-### Speaker notes
-
-You can add speaker notes to slides. Speaker notes support limited formats such as bold, italics, and lists. Speaker notes, of course, will be available in handouts and in presenter view.
-
-```
-::: notes
-This is a speaker note.
-
-- Use basic Markdown
-- like this list
-- *and inline formatting*
-:::
-```
+* [Templates](#templates)
 
 ### Images and tables
 
@@ -212,44 +161,108 @@ This is a speaker note.
 Table: Simple table syntax and caption.
 ```
 
+### Columns
+
+You can use the the *Two Content* layout to put material in side by side columns. For example, you can put text next to an image on the same slide. To use the *Two Content* layout, nest two div containers of class `column` inside one div container of class `columns`.
+
+```
+:::::::::::::: {.columns}
+::: {.column}
+contents...
+:::
+::: {.column}
+contents...
+:::
+::::::::::::::
+```
+
+### Speaker notes
+
+You can add speaker notes to slides. Speaker notes support limited formats such as bold, italics, and lists. Speaker notes, of course, will be available in handouts and in presenter view.
+
+```
+::: notes
+This is a speaker note.
+
+- Use basic Markdown
+- like this list
+- *and inline formatting*
+:::
+```
+
+
 Images and tables will always be placed on new slides. The only elements that can coexist with an image or table on a slide are the slide header and caption.
+
+### Templates
+
+The size and design of PowerPoint presentations are determined by the reference template. Pandoc ships with a default PowerPoint template that contains a blank presentation in the standard (4:3) size. If you want to change the size or design of a PowerPoint presentation, you should use a custom template. Reference a template with the `reference_doc` option in the YAML header.
+
+```
+---
+title: My presentation
+output: 
+  powerpoint_presentation:
+    reference_doc: template.pptx
+---
+```
+
+The template should contain the following four layouts as its first four layouts. Any template included with a recent install of PowerPoint (either with `.pptx` or `.potx` extension) should work, as will most templates derived from these. Markdown headers and content will map to slide layouts and placeholders according to the rules in [Structuring the Presentation](#structuring-the-presentation).
+
+#### Layouts
+
+1. **Title**. Has placeholders for a title and a subtitle. Used for information in the YAML header.
+
+<center><img src="img/layout-title.png" style="width: 400px;"/></center>
+
+2. **Section header**. Has a placeholder for a section header -- content will not render on this layout. Used for headers above the [slide level](#structuring-the-presentation).
+
+<center><img src="img/layout-section.png" style="width: 400px;"/></center>
+
+3. **Title and content**. Has placeholders for title and content. Used for headers at the [slide level](#structuring-the-presentation).
+
+<center><img src="img/layout-content.png" style="width: 400px;"/></center>
+
+4. **Two Content**. Has placeholders for title and two content. Used for headers at the [slide level](#structuring-the-presentation) with content in [columns](#columns).
+
+<center><img src="img/layout-twocontent.png" style="width: 400px;"/></center>
 
 
 ***
 
 # Structuring the Presentation
 
-You can structure your presentation with section and content slides using a hierarchy of markdown [headers](https://pandoc.org/MANUAL.html#headers). The slide level is the header level that creates content slides from the *Title and Content* or *Two Content* layouts. Your R Markdown document is carved up into slides according to the following [rules](http://pandoc.org/MANUAL.html#structuring-the-slide-show):
+PowerPoint presentations have a hierarchy of title, section, and content slides whereas markdown documents have a hierarchy of headers and content. In order to structure a PowerPoint presentation, Pandoc needs to determine which markdown header level should be used for the PowerPoint slide level. For example, the markdown header `## Introduction` might map to a section slide, while `### Details` might map to a content slide.
+
+By default, Pandoc sets the slide level to the highest header level in the hierarchy that is followed immediately by markdown content somewhere in the document. Once Pandoc determines the slide level, the markdown document is carved up into slides according the the following rules:
 
 * Headers at the slide level always starts a new slide
 * Headers above the slide level in the hierarchy create *section headers*
 * Headers below the slide level in the hierarchy create headers within a slide
 * A horizontal rule always starts a new slide
-* A *title page* is constructed automatically from the document’s title block
-
-In order to structure a PowerPoint presentation, Pandoc needs to determine which header level should be used for the slide level. By default, Pandoc sets the slide level to the highest header level in the hierarchy that is followed immediately by content somewhere in the document.
+* A *title page* is constructed automatically from the document’s title (i.e. YAML) block
 
 ```
 ---
+title: Title slide (Slide 1)
 output:
   powerpoint_presentation:
     slide_level: 3 # use this to override default
 ---
 
-# Section header (Slide 1)
+# Section header (Slide 2)
 
-## Section header (Slide 2)
+## Section header (Slide 3)
 
-### Title (Slide 3)
+### Slide Title (Slide 4)
 
-Content (this content sets the default slide level)
+Slide Content (by default this content sets the slide level to three)
 
-#### Content header (Slide 3)
+#### Slide content header (Slide 4)
 
-##### Content header (Slide 3)
+##### Slide content header (Slide 4)
 ```
 
-In the document above, the default slide level is 3 because the level 3 header is the first to be followed by content. You can override the default slide level by setting the `slide_level` option in the YAML header. *Note: If you do not want to structure your slides into sections, you can just use level 1 headers to create all your slides.*
+The document above creates a presentation with four slides. The default slide level is 3 because the level 3 header is the first to be followed by content. You can override the default slide level by setting the `slide_level` option in the YAML header. *Note: If you do not want to structure your slides into sections, you can just use level 1 headers to create all your slides.*
 
 ***
 
@@ -293,7 +306,7 @@ knitr::include_app('https://gallery.shinyapps.io/goog-trend-index/')
 
 These code [chunk options](https://yihui.name/knitr/options/) can be especially useful when rendering PowerPoint output. 
 
-* `echo`. Control R source code in the output file. Set to `FALSE` if you do not want your souce code included in your PowerPoint presentation.
+* `echo`. Control R source code in the output file. Set to `FALSE` if you do not want your source code included in your PowerPoint presentation.
 * `cache`. Save time by caching plots and other output. If document rendering becomes time consuming due to long computations or plots that are expensive to generate you can use knitr caching to improve performance.
 * `screenshot.opts`. Delay a webshot capture. An arbitrary URL may take a long time to load. You can increase the delay in order to give apps enough time to load before taking a webshot.
 * `fig.width` and `fig.height`. Size a plot. This should be numeric in inches. Default is 7.

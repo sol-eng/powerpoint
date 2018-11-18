@@ -1,0 +1,12 @@
+name: rendering-powerpoint
+title: rendering-powerpoint
+username: nathan
+account: nathan
+server: colorado.rstudio.com
+hostUrl: http://colorado.rstudio.com:3939/__api__
+appId: 1237
+bundleId: 22414
+url: http://colorado.rstudio.com:3939/content/1237/
+when: 1542563570.30373
+asMultiple: FALSE
+asStatic: FALSE

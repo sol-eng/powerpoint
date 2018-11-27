@@ -6,3 +6,4 @@
 rsconnect
 *.html
 *_cache*
+*.Rproj

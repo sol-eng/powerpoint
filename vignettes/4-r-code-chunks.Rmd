@@ -1,0 +1,119 @@
+---
+title: "R Code Chunks"
+output: powerpoint_presentation
+---
+
+```{r, include=FALSE}
+if (is.null(webshot:::find_phantom())) webshot::install_phantomjs()
+```
+
+### Overview
+
+* R Code Chunks can be used as a means to render R output into documents or to simply display code for illustration. 
+* You may choose to remove source code from your PowerPoint presentation by setting `echo=FALSE` in the code chunk options.
+
+### Syntax Highlighting
+
+Source code will render with syntax highlighting inline with other markdown text in your document. 
+
+```{r, eval=FALSE}
+library(dplyr)
+nycflights13::flights %>%
+  select(carrier, arr_time) %>%
+  filter(!is.na(arr_time)) %>%
+  group_by(carrier) %>%
+  summarize(average = mean(arr_time)) %>%
+  arrange(average)
+````
+
+### Table Output
+
+Table output from `kable` will assume the table design of whatever template you use.
+
+```{r, eval=FALSE}
+knitr::kable(mtcars)
+```
+
+### Table Example
+
+```{r, echo=FALSE}
+knitr::kable(head(iris))
+```
+
+### Plot Output
+
+* R code chunks can also be used to render plots.
+* Images will be scaled automatically to fit the slide. 
+* You can change image size with `fig.width` and `fig.height` code chunk options.
+
+```{r, eval=FALSE}
+library(ggplot2)
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point(mapping = aes(color = class)) + 
+  geom_smooth(method = "loess")
+```
+
+### Plot Example
+
+```{r echo=FALSE, fig.cap="Highway miles per gallon vs engine displacement"}
+library(ggplot2)
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point(mapping = aes(color = class)) + 
+  geom_smooth(method = "loess")
+```
+
+### Webshot
+
+* You can capture HTML Widgets and Shiny apps by installing the `webshot` package and `phantomjs`. 
+* The `webshot` package will automatically take a screenshot of an interactive HTML Widget and insert it into your presentation. 
+* The `knitr::include_app` function will use webshot to embed a screenshot of a Shiny application that links viewers to a live application hosted on RStudio Connect, Shiny Server, or Shinyapps.io.
+
+### Webshot Examples
+
+```{r, eval=FALSE}
+# Install
+install.packages("webshot")
+webshot::install_phantomjs()
+
+# Capture an HTML Widget
+dygraphs::dygraph(nhtemp, main = "New Haven Temperatures")
+
+# Capture a Shiny app
+knitr::include_app('https://gallery.shinyapps.io/goog-trend-index/')
+```
+
+### HTML Widget Webshot
+
+```{r echo=FALSE, fig.cap="Screenshot of interactive dygraph"}
+library(dygraphs)
+dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+  dyRangeSelector(dateWindow = c("1920-01-01", "1960-01-01"))
+```
+
+### Shiny App Webshot 
+
+```{r cache=TRUE, screenshot.opts=list(delay=5), echo=FALSE, fig.cap="Click image to open"}
+knitr::include_app('https://gallery.shinyapps.io/goog-trend-index/')
+```
+
+### Useful Code Chunk Options
+
+* Remove source code
+    * `echo=TRUE`
+* Cache your screenshots
+    * `cache=TRUE`
+* Wait for the image to load before taking a screenshot
+    * `screenshot.opts=list(delay=5)`
+* Specify image width or height
+    * `fig.width=15`
+* Add an image caption
+    * `fig.cap="Click Image to Open App"`
+
+### Code Chunk Example
+
+In this example the code chunk will wait one second for an app to load, resize the width to 15 inches, and cache the image for later use.
+
+```
+
+{r, cache=TRUE, screenshot.opts=list(delay=1), fig.width=15}
+```

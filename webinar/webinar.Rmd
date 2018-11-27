@@ -1,0 +1,237 @@
+---
+title: "Make PowerPoint Presentations with R Markdown"
+subtitle: "An Introduction"
+output:
+  powerpoint_presentation:
+    reference_doc: webinar-template.pptx
+    slide_level: 2
+---
+
+# Why would you want to create a PowerPoint presentation from R Markdown?
+
+## Everyone knows PowerPoint
+
+:::::::::::::: {.columns}
+::: {.column}
+### Standard communication tool
+
+* Especially in business
+* People "speak" PowerPoint
+* Bullet points
+
+### It's useful -- it works
+
+* Flexible enough to get the job done
+* You can make the slides fast or pretty
+
+### Everyone has personal experience with it
+
+* Some love it
+* Others hate it
+:::
+::: {.column}
+![](img/ppt.png)
+:::
+::::::::::::::
+
+## Anyone can learn R Markdown
+
+:::::::::::::: {.columns}
+::: {.column}
+### It is so easy!
+
+### And you can use R!
+
+* Visualizations, tables, code, etc.
+
+### Plain text
+
+* Versioned, reproducible, collaborative
+
+### Emits multiple output
+
+* HTML, PDF, Microsoft Word
+* but not PowerPoint ... UNTIL NOW!
+:::
+::: {.column}
+![](img/rmarkdown.png)
+:::
+::::::::::::::
+
+## We are combining two great things
+
+![Think of it as the Rheese's Peanut Butter Cup of presentations](img/rpb2.png)
+
+## Other options
+
+These popular R packages offer fine grain functions for creating PowerPoint presentations.
+
+* ReportRs
+* OfficeR
+* R2PPT
+* Displayr
+
+# Demo: Create a PowerPoint Presentation with RStudio
+
+## Quick Example
+
+:::::::::::::: {.columns}
+::: {.column}
+Create a new R Markdown Document:
+
+* `File > New File > R Markdown > Presentation`
+
+Then choose:
+
+* `Knit to PowerPoint`
+
+Open the presentation:
+
+* RStudio Desktop -- Opens automatically
+* RStudio Server -- Downloads automatically
+* *You will need PowerPoint on your workstation*
+
+Render programmatically
+
+* *IDE not required*
+* `rmarkdown::render("in.Rmd", output_format = "powerpoint_presentation")`
+
+:::
+::: {.column}
+![](img/newrmd.png)
+:::
+::::::::::::::
+
+# How does it work?
+
+## R Markdown > Markdown > PowerPoint
+
+![](img/render.png)
+
+## Pandoc
+
+:::::::::::::: {.columns}
+::: {.column}
+What is Pandoc?
+
+* Document converter (e.g. Markdown to HTML)
+* Free software Bundled in RStudio IDE
+
+PowerPoint output added in Pandoc 2
+
+* Initial release in December 2017
+* Included in upcoming RStudio IDE v1.2
+* Included in RStudio Connect as of v1.6.4
+
+:::
+::: {.column}
+![](img/knife.png)
+:::
+::::::::::::::
+
+# Use Cases
+
+## 1. Render presentation then customize
+
+* Output text, tables, and plots to PowerPoint
+* Modify and/or copy slides into your final presentation
+* [Example](demos/bank/bank-marketing.pptx)
+
+## 2. Programmatically render and distribute
+
+* Output entire presentations with R Markdown
+* Optional
+    * Render programmatically
+    * Paramaterize and automate 
+    * Share presentation (e.g. via email)
+* [Example](demos/stocks/stocks.pptx)
+
+# Features
+
+## Markdown features
+
+* Most markdown elements
+    * Text formats
+    * Lists
+    * Math expressions
+    * Hyperlinks
+* As well as these nifty features
+    * Images and tables with captions
+    * Speaker notes
+    * Templates
+* [Example](demos/markdown/markdown-features.pptx)
+
+## Supports R Code (of course!)
+
+* Code syntax highlighting
+* Table output
+* Plots (e.g ggplot)
+* HTML Widgets
+* [Example](demos/rcode/rcode.pptx)
+
+## Shiny
+
+Point viewers to your Shiny app
+
+* Install `webshot` package
+* Install phanotmjs: `webshot::install_phantomjs()`
+* Call `knitr::include_app()`
+* A linked image of your app will be included in your presentation
+* [Example](demos/tracker/tracker-powerpoint.pptx)
+
+# Resources
+
+## Where to get help
+
+:::::::::::::: {.columns}
+::: {.column}
+* [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/powerpoint-presentation.html)
+* [Getting started](https://support.rstudio.com/hc/en-us/articles/360004672913-Rendering-PowerPoint-Presentations-with-RStudio)
+* [Troubleshooting](https://support.rstudio.com/hc/en-us/articles/360006283914)
+* [Community](https://community.rstudio.com/)
+* [Submitting issues](https://github.com/rstudio/rmarkdown/issues)
+:::
+::: {.column}
+![](img/info.png)
+:::
+::::::::::::::
+
+## Frequently asked questions
+
+:::::::::::::: {.columns}
+::: {.column}
+* [Troubleshooting](https://support.rstudio.com/hc/en-us/articles/360006283914)
+    * Why does my PowerPoint presentation not open properly?
+    * How do I put an image and text on the same slide?
+    * How do I control the placement of images and text?
+* [Getting started](https://support.rstudio.com/hc/en-us/articles/360004672913-Rendering-PowerPoint-Presentations-with-RStudio)
+    * How do I use custom templates?
+    * How do I structure my presentation?
+:::
+::: {.column}
+![](img/faq.png)
+:::
+::::::::::::::
+
+## Vignettes
+
+:::::::::::::: {.columns}
+::: {.column}
+[github.com/sol-eng/powerpoint](https://github.com/sol-eng/powerpoint)
+
+* [Getting Started](../vignettes/1-getting-started.pptx)
+* [Markdown Features](../vignettes/2a-markdown-features.pptx)
+* [Images and Tables](../vignettes/2b-images-and-tables.pptx)
+* [Columns and Notes](../vignettes/2c-columns-and-notes.pptx)
+* [Templates](../vignettes/2d-templates.pptx)
+* [Structuring the Presentation](../vignettes/3-structuring-the-presentation.pptx)
+* [R Code Chunks](../vignettes/4-r-code-chunks.pptx)
+:::
+::: {.column}
+![](img/Octocat.png)
+:::
+::::::::::::::
+
+## End
+
+![](img/ppt-rmd.jpg)

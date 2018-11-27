@@ -1,0 +1,48 @@
+---
+title: "Columns and Notes"
+output: powerpoint_presentation
+---
+
+### Columns
+
+:::::::::::::: {.columns}
+::: {.column}
+You can use the the Two Content layout to put material in side by side columns. To use the Two Content layout, nest two div containers of class column inside one div container of class columns.
+:::
+::: {.column}
+```
+:::::: {.columns}
+::: {.column}
+contents...
+:::
+::: {.column}
+contents...
+:::
+::::::
+```
+:::
+::::::::::::::
+
+
+### Notes
+
+You can add speaker notes to slides. Speaker notes support limited formats such as bold, italics, and lists. Speaker notes, of course, will be available in handouts and in presenter view.
+
+```
+
+::: notes
+This is a speaker note.
+
+- Use basic Markdown
+- like this list
+- *and inline formatting*
+:::
+```
+
+::: notes
+This is a speaker note.
+
+- Use basic Markdown
+- like this list
+- *and inline formatting*
+:::

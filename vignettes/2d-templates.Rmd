@@ -1,0 +1,84 @@
+---
+title: "Templates"
+output:
+  powerpoint_presentation:
+    reference_doc: template.potx
+---
+
+### Overview
+
+The size and design of PowerPoint presentations are determined by the reference template. 
+```
+
+---
+output: 
+  powerpoint_presentation:
+    reference_doc: template.pptx
+---
+
+```
+
+The default PowerPoint template contains a blank presentation in the standard (4:3) size. 
+
+
+# Layouts
+
+### Details
+
+Any template included with a recent install of PowerPoint (either with `.pptx` or `.potx` extension) should work, as will most templates derived from these. The template should contain the following four layouts:
+
+1. Title
+2. Section Header
+3. Title and Content
+4. Two Content
+
+### 1. Title 
+
+* This layout has a placeholder for a title and a placeholder for a subtitle.
+* This layout is used when you specify a title in the YAML header.
+
+```
+
+---
+title: My presentation
+---
+```
+
+### 2. Section Header
+
+* This layout has a single placeholder for a section header
+* Content will not render on this layout.
+* This layout is used when you specify section headers above the slide level.
+
+```
+
+# Section Header
+```
+
+### 3. Title and Content
+
+* This layout has a placeholder for a title and a single placeholder for content.
+* This layout is used for content slides specified at the slide level.
+
+```
+
+### Title
+and content
+```
+
+### 4. Two Content
+
+* This layout has a placeholder for a title and two placeholders for content. 
+* This layout is used when you specify two columns for a content slides at the slide level.
+
+```
+
+:::::::::::::: {.columns}
+::: {.column}
+contents...
+:::
+::: {.column}
+contents...
+:::
+::::::::::::::
+```

@@ -1,0 +1,17 @@
+---
+title: "Structuring the presentation (Slide 1)"
+output:
+  powerpoint_presentation:
+    slide_level: 3
+---
+
+# Section header (Slide 2)
+
+## Section header (Slide 3)
+
+### Slide title (Slide 4)
+Content (this sets the default slide level)
+
+#### Slide content header (Slide 4)
+
+##### Slide content header (Slide 4)

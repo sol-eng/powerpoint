@@ -1,0 +1,77 @@
+---
+title: "Structuring the presentation"
+output: 
+  powerpoint_presentation:
+    slide_level: 3
+---
+
+### Markdown Headers
+
+You can structure your presentation with section and content slides using a hierarchy of markdown headers. 
+
+```
+
+# Level 1
+
+## Level 2
+
+### Level 3
+
+```
+
+### Slide Level
+
+The slide level is the header level that creates content slides from the Title and Content or Two Content layouts. Your R Markdown document is carved up into slides according to rules.
+
+### Rules
+
+* Headers at the slide level always starts a new slide
+* Headers above the slide level in the hierarchy create section headers
+* Headers below the slide level in the hierarchy create headers within a slide
+* A horizontal rule always starts a new slide
+* A title page is constructed automatically from the document’s title block
+
+### Setting the Slide Level
+
+In order to structure a PowerPoint presentation, Pandoc needs to determine which header level should be used for the slide level. 
+
+**By default, Pandoc sets the slide level to the highest header level in the hierarchy that is followed immediately by content somewhere in the document.**
+
+# Examples
+
+### Slide Level: 3
+
+```
+---
+output:
+  powerpoint_presentation:
+    slide_level: 3
+---
+
+# Section header (First slide)
+
+## Section header (Second slide)
+
+### Title (Third slide)
+Content (this sets the default slide level)
+
+#### Content header (Third slide)
+
+##### Content header (Third slide)
+```
+
+### Slide Level: 1
+
+If you do not want to structure your slides into sections, you can just use level 1 headers to create all your slides.
+
+```
+---
+output: powerpoint_presentation
+---
+
+# Slide 1
+Content
+
+# Slide 2
+Content
+```

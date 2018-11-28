@@ -181,6 +181,8 @@ PowerPoint output added in Pandoc 2
 
 ## Markdown features
 
+:::::::::::::: {.columns}
+::: {.column}
 * Most markdown elements
     * Text formats
     * Lists
@@ -191,24 +193,45 @@ PowerPoint output added in Pandoc 2
     * Speaker notes
     * Templates
 * [Example](demos/markdown/markdown-features.pptx)
+:::
+::: {.column}
+![](img/markdown.png)
+:::
+::::::::::::::
 
 ## Supports R Code (of course!)
 
+:::::::::::::: {.columns}
+::: {.column}
 * Code syntax highlighting
 * Table output
 * Plots (e.g ggplot)
 * HTML Widgets
 * [Example](demos/rcode/rcode.pptx)
+:::
+::: {.column}
+![](img/R_logo.png)
+:::
+::::::::::::::
 
 ## Shiny
 
+:::::::::::::: {.columns}
+::: {.column}
 Point viewers to your Shiny app
 
 * Install `webshot` package
 * Install phanotmjs: `webshot::install_phantomjs()`
 * Call `knitr::include_app()`
-* A linked image of your app will be included in your presentation
+
+A linked image of your app will be included in your presentation
+
 * [Example](demos/tracker/tracker-powerpoint.pptx)
+:::
+::: {.column}
+![](img/shiny.png)
+:::
+::::::::::::::
 
 # Resources
 
@@ -219,7 +242,7 @@ Point viewers to your Shiny app
 * [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/powerpoint-presentation.html)
 * [Getting started](https://support.rstudio.com/hc/en-us/articles/360004672913-Rendering-PowerPoint-Presentations-with-RStudio)
 * [Troubleshooting](https://support.rstudio.com/hc/en-us/articles/360006283914)
-* [Community](https://community.rstudio.com/)
+* [community.rstudio.com](https://community.rstudio.com/)
 * [Submitting issues](https://github.com/rstudio/rmarkdown/issues)
 :::
 ::: {.column}
@@ -232,7 +255,7 @@ Point viewers to your Shiny app
 :::::::::::::: {.columns}
 ::: {.column}
 * [Troubleshooting](https://support.rstudio.com/hc/en-us/articles/360006283914)
-    * Why does my PowerPoint presentation not open properly?
+    * Why does my presentation not open properly?
     * How do I put an image and text on the same slide?
     * How do I control the placement of images and text?
 * [Getting started](https://support.rstudio.com/hc/en-us/articles/360004672913-Rendering-PowerPoint-Presentations-with-RStudio)
@@ -263,6 +286,6 @@ Point viewers to your Shiny app
 :::
 ::::::::::::::
 
-## End
+## Thank you
 
 ![](img/ppt-rmd.jpg)

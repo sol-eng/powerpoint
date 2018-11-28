@@ -22,7 +22,7 @@ output:
 ### It's useful -- it works
 
 * Flexible enough to get the job done
-* You can make the slides fast or pretty
+* You can make slides fast
 
 ### Everyone has personal experience with it
 
@@ -61,6 +61,20 @@ output:
 ## We are combining two great things
 
 ![Think of it as the Rheese's Peanut Butter Cup of presentations](img/rpb2.png)
+
+## Benefits
+
+:::::::::::::: {.columns}
+::: {.column}
+* Output code, tables, and plots to PowerPoint
+* Share your insights with a wider audience
+* Spend more time coding, less time generating presentations
+* [Communicating with R Markdown](https://r4ds.had.co.nz/r-markdown.html)
+:::
+::: {.column}
+![](img/cover.png)
+:::
+::::::::::::::
 
 ## Other options
 
@@ -133,18 +147,35 @@ PowerPoint output added in Pandoc 2
 
 ## 1. Render presentation then customize
 
+:::::::::::::: {.columns}
+::: {.column}
 * Output text, tables, and plots to PowerPoint
 * Modify and/or copy slides into your final presentation
 * [Example](demos/bank/bank-marketing.pptx)
+:::
+::: {.column}
+![](img/laptop.png)
+:::
+::::::::::::::
 
-## 2. Programmatically render and distribute
+## 2. Publish RStudio Connect
 
+:::::::::::::: {.columns}
+::: {.column}
+* [RStudio Connect](https://www.rstudio.com/products/connect/)
+    * Publishing platform for R
+    * Runs your R code
+    * Share Shiny apps, R Markdown reports, and much more
 * Output entire presentations with R Markdown
-* Optional
-    * Render programmatically
-    * Paramaterize and automate 
-    * Share presentation (e.g. via email)
-* [Example](demos/stocks/stocks.pptx)
+    * Render programmatically on schedule
+    * Accept user input
+    * Distribute via email
+    * [Example](demos/stocks/stocks.pptx)
+:::
+::: {.column}
+![](img/server.png)
+:::
+::::::::::::::
 
 # Features
 

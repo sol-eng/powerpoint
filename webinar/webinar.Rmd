@@ -1,5 +1,5 @@
 ---
-title: "Make PowerPoint Presentations with R Markdown"
+title: "Make PowerPoint Presentations with R&nbsp;Markdown"
 subtitle: "An Introduction"
 output:
   powerpoint_presentation:
@@ -17,7 +17,6 @@ output:
 
 * Especially in business
 * People "speak" PowerPoint
-* Bullet points
 
 ### It's useful -- it works
 
@@ -26,64 +25,39 @@ output:
 
 ### Everyone has personal experience with it
 
-* Some love it
-* Others hate it
 :::
 ::: {.column}
 ![](img/ppt.png)
 :::
 ::::::::::::::
 
-## Anyone can learn R Markdown
+## But your work is coded in R
 
 :::::::::::::: {.columns}
 ::: {.column}
-### It is so easy!
 
-### And you can use R!
+### Your code is your product
 
-* Visualizations, tables, code, etc.
+* Your output is a manifestation of your code
+* Plots, tables, model output, etc.
 
-### Plain text
+### R Markdown makes your work reproducible
 
-* Versioned, reproducible, collaborative
+### You choose the output format
 
-### Emits multiple output
-
-* HTML, PDF, Microsoft Word
+* Reports, apps, dashboards,
+* HTML, PDF, Microsoft Word,
 * but not PowerPoint ... UNTIL NOW!
+
 :::
 ::: {.column}
 ![](img/rmarkdown.png)
 :::
 ::::::::::::::
 
-## We are combining two great things
+## Now you can author PowerPoint presentations from R Markdown.
 
-![Think of it as the Rheese's Peanut Butter Cup of presentations](img/rpb2.png)
-
-## Benefits
-
-:::::::::::::: {.columns}
-::: {.column}
-* Output code, tables, and plots to PowerPoint
-* Share your insights with a wider audience
-* Spend more time coding, less time generating presentations
-* [Communicating with R Markdown](https://r4ds.had.co.nz/r-markdown.html)
-:::
-::: {.column}
-![](img/cover.png)
-:::
-::::::::::::::
-
-## Other options
-
-These popular R packages offer fine grain functions for creating PowerPoint presentations.
-
-* ReportRs
-* OfficeR
-* R2PPT
-* Displayr
+![As of RStudio version 1.2 you can render PowerPoint presentations from the IDE. This combines two great things -- PowerPoint and R Markdown. Think of it as the Rheese's Peanut Butter Cup of presentation software.](img/rpb2.png)
 
 # Demo: Create a PowerPoint Presentation with RStudio
 
@@ -116,6 +90,21 @@ Render programmatically
 :::
 ::::::::::::::
 
+## Benefits
+
+:::::::::::::: {.columns}
+::: {.column}
+* Your whole presentation becomes a reproducible document
+* Output code, tables, and plots directly to slides
+* Makes it easier to share your insights with a wider audience
+* Spend more time coding, less time generating presentations
+* [Communicating with R Markdown](https://r4ds.had.co.nz/r-markdown.html)
+:::
+::: {.column}
+![](img/cover.png)
+:::
+::::::::::::::
+
 # How does it work?
 
 ## R Markdown > Markdown > PowerPoint
@@ -129,19 +118,28 @@ Render programmatically
 What is Pandoc?
 
 * Document converter (e.g. Markdown to HTML)
-* Free software Bundled in RStudio IDE
+* Open source software Bundled in RStudio IDE
 
 PowerPoint output added in Pandoc 2
 
 * Initial release in December 2017
-* Included in upcoming RStudio IDE v1.2
-* Included in RStudio Connect as of v1.6.4
+* Included in upcoming [RStudio IDE v1.2](https://blog.rstudio.com/2018/11/19/rstudio-1-2-preview-the-little-things/)
+* Included in [RStudio Connect](https://www.rstudio.com/products/connect/) as of v1.6.4
 
 :::
 ::: {.column}
 ![](img/knife.png)
 :::
 ::::::::::::::
+
+## Other options
+
+These popular R packages offer fine grain functions for creating PowerPoint presentations.
+
+* ReportRs
+* OfficeR
+* R2PPT
+* Displayr
 
 # Use Cases
 
@@ -168,8 +166,8 @@ PowerPoint output added in Pandoc 2
     * Share Shiny apps, R Markdown reports, and much more
 * Output entire presentations with R Markdown
     * Render programmatically on schedule
-    * Accept user input
     * Distribute via email
+    * Accept user input
     * [Example](demos/stocks/stocks.pptx)
 :::
 ::: {.column}
@@ -226,7 +224,7 @@ Point viewers to your Shiny app
 
 A linked image of your app will be included in your presentation
 
-* [Example](demos/tracker/tracker-powerpoint.pptx)
+* [Example](http://colorado.rstudio.com/rsc/tracker-app/)
 :::
 ::: {.column}
 ![](img/shiny.png)
@@ -239,6 +237,7 @@ A linked image of your app will be included in your presentation
 
 :::::::::::::: {.columns}
 ::: {.column}
+* [rmarkdown.rstudio.com](https://rmarkdown.rstudio.com/)
 * [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/powerpoint-presentation.html)
 * [Getting started](https://support.rstudio.com/hc/en-us/articles/360004672913-Rendering-PowerPoint-Presentations-with-RStudio)
 * [Troubleshooting](https://support.rstudio.com/hc/en-us/articles/360006283914)
@@ -254,13 +253,13 @@ A linked image of your app will be included in your presentation
 
 :::::::::::::: {.columns}
 ::: {.column}
+* [Getting started](https://support.rstudio.com/hc/en-us/articles/360004672913-Rendering-PowerPoint-Presentations-with-RStudio)
+    * How do I use custom templates?
+    * How do I structure my presentation?
 * [Troubleshooting](https://support.rstudio.com/hc/en-us/articles/360006283914)
     * Why does my presentation not open properly?
     * How do I put an image and text on the same slide?
     * How do I control the placement of images and text?
-* [Getting started](https://support.rstudio.com/hc/en-us/articles/360004672913-Rendering-PowerPoint-Presentations-with-RStudio)
-    * How do I use custom templates?
-    * How do I structure my presentation?
 :::
 ::: {.column}
 ![](img/faq.png)
@@ -285,6 +284,10 @@ A linked image of your app will be included in your presentation
 ![](img/Octocat.png)
 :::
 ::::::::::::::
+
+## Try out the new [RStudio v1.2 Preview](https://www.rstudio.com/products/rstudio/download/preview/)
+
+[![Click image to download the RStudio v1.2 Preview](img/ide.png)](https://www.rstudio.com/products/rstudio/download/preview/)
 
 ## Thank you
 

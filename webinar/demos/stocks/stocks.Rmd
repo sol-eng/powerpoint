@@ -43,7 +43,7 @@ Data were analyzed using these packages:
 
 ### Price History
 
-```{r, fig.cap=paste("Stock prices for", params$symbol)}
+```{r, fig.cap="Stock prices"}
 p1 <- dat %>%
     ggplot(aes(x = date, y = close)) +
     geom_candlestick(aes(open = open, high = high, low = low, close = close),
@@ -70,7 +70,7 @@ dat %>%
 `r params$symbol` trading volume was `r format(curr$volume, big.mark = ",", scientific = FALSE)` shares on `r params$end`. Average trading volume over this time period was `r format(mean(round(dat$volume)), big.mark = ",", scientific = FALSE)` shares.
 :::
 ::: {.column}
-```{r, fig.cap=paste("Trading volume for", params$symbol)}
+```{r, fig.cap="Trading volume"}
 ggplot(dat, aes(date, volume)) +
   geom_bar(stat="Identity") +
   labs(title = paste(params$symbol, "Volume"), y = "Volume", x = "") +

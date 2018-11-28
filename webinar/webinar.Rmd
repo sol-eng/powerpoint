@@ -43,10 +43,12 @@ output:
 
 ### R Markdown makes your work reproducible
 
-### You choose the output format
+* Weave text and code to produce elegantly formatted output
+* Use R Notebook mode for interactive analysis
 
-* Reports, apps, dashboards,
-* HTML, PDF, Microsoft Word,
+### Choose your output format
+
+* Reports, apps, dashboards, HTML, PDF, Word,
 * but not PowerPoint ... UNTIL NOW!
 
 :::
@@ -55,7 +57,7 @@ output:
 :::
 ::::::::::::::
 
-## Now you can author PowerPoint presentations from R Markdown.
+## Make PowerPoint presentations with R&nbsp;Markdown.
 
 ![As of RStudio version 1.2 you can render PowerPoint presentations from the IDE. This combines two great things -- PowerPoint and R Markdown. Think of it as the Rheese's Peanut Butter Cup of presentation software.](img/rpb2.png)
 
@@ -90,18 +92,22 @@ Render programmatically
 :::
 ::::::::::::::
 
-## Benefits
+## Benefits of using R Markdown
 
 :::::::::::::: {.columns}
 ::: {.column}
-* Your whole presentation becomes a reproducible document
-* Output code, tables, and plots directly to slides
-* Makes it easier to share your insights with a wider audience
-* Spend more time coding, less time generating presentations
-* [Communicating with R Markdown](https://r4ds.had.co.nz/r-markdown.html)
+
+[R For Data Science](https://r4ds.had.co.nz/r-markdown.html)
+
+* Communicating to decision makers
+* Collaborating with other data scientists
+* An environment in which you *do* data science
+
+Spend less time iterating on presentation slides and more time doing better data science
+
 :::
 ::: {.column}
-![](img/cover.png)
+[![](img/cover.png)](https://r4ds.had.co.nz/r-markdown.html)
 :::
 ::::::::::::::
 
@@ -117,14 +123,19 @@ Render programmatically
 ::: {.column}
 What is Pandoc?
 
-* Document converter (e.g. Markdown to HTML)
-* Open source software Bundled in RStudio IDE
+* Open source software
+* Convert files from one format to another
+* A swiss army knife
 
 PowerPoint output added in Pandoc 2
 
 * Initial release in December 2017
+
+Pandoc is bundled with RStudio
+
 * Included in upcoming [RStudio IDE v1.2](https://blog.rstudio.com/2018/11/19/rstudio-1-2-preview-the-little-things/)
 * Included in [RStudio Connect](https://www.rstudio.com/products/connect/) as of v1.6.4
+
 
 :::
 ::: {.column}

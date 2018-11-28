@@ -105,13 +105,13 @@ Click here to query the [Google](www.google.com) search engine.
 :::
 ::::::::::::::
 
-### Image from file
-
-![](r4ds.png)
-
 ### Image from web
 
 ![](https://www.rstudio.com/wp-content/uploads/2014/07/RStudio-Logo-Blue-Gray.png)
+
+### Image from file
+
+![](r4ds.png)
 
 ### Plain caption
 
@@ -139,6 +139,16 @@ Tables render natively in PowerPoint and pick up the style defined by the refere
 
 Table: Simple table syntax and caption.
 ```
+
+### Tables
+
+ manufacturer    displ   hwy     class
+-------------    ------  -----  ---------
+        audi     1.8     29      compact
+   chevrolet     5.3     20        suv
+       dodge     2.4     24      minivan
+
+Table: Simple table syntax and caption.
 
 ### Columns
 

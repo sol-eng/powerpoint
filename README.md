@@ -5,11 +5,6 @@ You can render PowerPoint presentations from R Markdown documents. This capabili
 
 ![](ppt-rmd.png)
 
-
-### RStudio v1.2
-
-RStudio version 1.2 bundles Pandoc 2 making it easy to create PowerPoint presentations in R. You can upgrade to the latest version of RStudio by downloading and installing the [RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/).
-
 ### Features
 
 You can generate most elements supported by Pandoc’s Markdown with the PowerPoint output including: Inline formatting; lists; LaTeX math expressions/equations; hyperlinks; block quotations; and more. Additionally, PowerPoint output support these nice features:
@@ -18,6 +13,10 @@ You can generate most elements supported by Pandoc’s Markdown with the PowerPo
 * Columns
 * Speaker notes
 * Templates
+
+### RStudio v1.2
+
+RStudio version 1.2 bundles Pandoc 2 making it easy to create PowerPoint presentations in R. You can upgrade to the latest version of RStudio by downloading and installing the [RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/).
 
 ### References
 

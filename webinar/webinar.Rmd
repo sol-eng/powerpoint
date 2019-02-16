@@ -160,7 +160,7 @@ These popular R packages offer fine grain functions for creating PowerPoint pres
 ::: {.column}
 * Output text, tables, and plots to PowerPoint
 * Modify and/or copy slides into your final presentation
-* [Example](demos/bank/bank-marketing.pptx)
+* [Example](../examples/bank/bank-marketing.pptx)
 :::
 ::: {.column}
 ![](img/laptop.png)
@@ -179,7 +179,7 @@ These popular R packages offer fine grain functions for creating PowerPoint pres
     * Render programmatically on schedule
     * Distribute via email
     * Accept user input
-    * [Example](demos/stocks/stocks.pptx)
+    * [Example](../examples/stocks/stocks.pptx)
 :::
 ::: {.column}
 ![](img/server.png)
@@ -201,7 +201,7 @@ These popular R packages offer fine grain functions for creating PowerPoint pres
     * Images and tables with captions
     * Speaker notes
     * Templates
-* [Example](demos/markdown/markdown-features.pptx)
+* [Example](../examples/markdown/markdown-features.pptx)
 :::
 ::: {.column}
 ![](img/markdown.png)
@@ -216,7 +216,7 @@ These popular R packages offer fine grain functions for creating PowerPoint pres
 * Table output
 * Plots (e.g ggplot)
 * HTML Widgets
-* [Example](demos/rcode/rcode.pptx)
+* [Example](../examples/rcode/rcode.pptx)
 :::
 ::: {.column}
 ![](img/R_logo.png)

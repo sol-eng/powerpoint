@@ -1,0 +1,43 @@
+---
+title: "R Code Chunks"
+output: powerpoint_presentation
+---
+
+```{r, include=FALSE}
+if (is.null(webshot:::find_phantom())) webshot::install_phantomjs()
+```
+
+### Syntax Highlighting
+
+```{r, eval=FALSE}
+library(dplyr)
+nycflights13::flights %>%
+  select(carrier, arr_time) %>%
+  filter(!is.na(arr_time)) %>%
+  group_by(carrier) %>%
+  summarize(average = mean(arr_time)) %>%
+  arrange(average)
+````
+
+### `knitr::kable(mtcars)`
+
+```{r, echo=FALSE}
+knitr::kable(head(iris))
+```
+
+### `ggplot(mpg, ...)`
+
+```{r echo=FALSE, fig.cap="Highway miles per gallon vs engine displacement"}
+library(ggplot2)
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point(mapping = aes(color = class)) + 
+  geom_smooth(method = "loess")
+```
+
+### `dygraph(nhtemp, ...)`
+
+```{r echo=FALSE, fig.height=3, fig.width=6, fig.cap="Screenshot of interactive dygraph"}
+library(dygraphs)
+dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+  dyRangeSelector(dateWindow = c("1920-01-01", "1960-01-01"))
+```

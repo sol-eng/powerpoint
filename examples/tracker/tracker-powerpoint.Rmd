@@ -1,0 +1,223 @@
+---
+title: "Customer Tracker Report"
+output: powerpoint_presentation
+date: "`r Sys.Date()`"
+params:
+  seg: 
+    label: "Segment:"
+    value: Total
+    input: select
+    choices: [Total, Heavy, Mainstream, Focus1, Focus2, 
+              Specialty, Diverse1, Diverse2, Other, New]
+  grp: 
+    label: "Group:"
+    value: Total
+    input: select
+    choices: [Total, Core, Extra]
+  per: 
+    label: "Period:"
+    value: Week
+    input: radio
+    choices: [Week, YTD]
+---
+
+
+## Overview
+
+Data were compared from pre and post periods by week. This report shows pecentage change by:
+
+* `r params$seg` (segment)
+* `r params$grp` (group)
+* `r params$per` (period)
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+library(readr)
+library(tidyverse)
+library(plotly)
+library(openxlsx)
+library(openxlsx)
+library(formattable)
+library(blastula)
+```
+
+```{r pulldata, cache=TRUE}
+curr <- read_csv("data/trackerCalcCurr.csv")
+pre <- read_csv("data/trackerCalcPre.csv")
+users <- read_csv("data/users.csv")
+```
+
+```{r format}
+f <- function(x, y) {(y / x - 1)}
+dat <- bind_cols(
+  curr %>%
+    filter(segment == params$seg) %>%
+    select(ends_with(paste0(params$grp, params$per))) %>%
+    rename_at(1:3, ~c("purchasesCurr", "itemsCurr", "dollarsCurr")),
+  pre %>%
+    filter(segment == params$seg) %>%
+    select(ends_with(paste0(params$grp, params$per))) %>%
+    rename_at(1:3, ~c("purchasesPre", "itemsPre", "dollarsPre"))
+) %>%
+  mutate(
+    Week = 1:52,
+    RevenuePre = dollarsPre,
+    RevenueCurr = dollarsCurr,
+    Revenue = f(dollarsPre, dollarsCurr),
+    CustomersPre = filter(users, segment == params$seg) %>% .$pre,
+    CustomersCurr = filter(users, segment == params$seg) %>% .$curr,
+    Customers = f(CustomersPre, CustomersCurr),
+    VisitsPre = purchasesPre / CustomersPre,
+    VisitsCurr = purchasesCurr / CustomersCurr,
+    Visits = f(VisitsPre, VisitsCurr),
+    ItemsPre = itemsPre / purchasesPre,
+    ItemsCurr = itemsCurr / purchasesCurr,
+    Items = f(ItemsPre, ItemsCurr),
+    SpendPre = dollarsPre / itemsPre,
+    SpendCurr = dollarsCurr / itemsCurr,
+    Spend = f(SpendPre, SpendCurr)
+  ) %>%
+  filter(Week <= 22) %>%
+  #arrange(desc(Week)) %>%
+  select(
+    Week, RevenuePre, RevenueCurr, Revenue,
+    CustomersPre, CustomersCurr, Customers,
+    VisitsPre, VisitsCurr, Visits,
+    ItemsPre, ItemsCurr, Items,
+    SpendPre, SpendCurr, Spend
+  )
+```
+
+## Results
+
+```{r plot, fig.height=7.5, fig.width=15}
+pdat <- dat %>%
+  select(Week, Revenue, Customers, Visits, Items, Spend) %>%
+  gather(seg, metric, -Week) %>%
+  mutate(metric = round(100 * metric, 2)) %>%
+  mutate(seg = factor(seg, levels = c("Spend", "Items", "Visits", "Customers", "Revenue")))
+
+p1 <- ggplot(filter(pdat, seg != "Revenue"), aes(Week, metric, fill = seg)) +
+  geom_bar(stat = "Identity") + 
+  geom_line(data = filter(pdat, seg == "Revenue"), aes(Week, metric), col = "darkgrey") +
+  scale_fill_manual(values = alpha(c("orange", "salmon", "darkgrey", "lightgreen", "lightblue"), 0.5)) +
+  labs(x = "Week", y = "Percent", title = "Percentage change by Week") +
+  theme_minimal() +
+  theme(legend.title=element_blank())
+
+p1
+```
+
+## Detail
+
+```{r data}
+sign_formatter <- formatter("span", 
+  style = x ~ style(color = ifelse(x > 0, "green", 
+    ifelse(x < 0, "red", "black"))))
+
+bar_formatter <- formatter("span",
+  style = x ~ style(
+    display = "inline-block", 
+    direction = ifelse(x > 0, "rtl", "ltr"), 
+    `border-radius` = "4px", 
+    `padding-right` = "2px",
+    `font-weight` = "bold",
+    `background-color` = csscolor(ifelse(x > 0, "palegreen", "pink")), 
+    width = percent(proportion(as.numeric(x)))))
+
+tile_formatter <- formatter("span",
+  style = x ~ style(
+    display = "block", 
+    padding = "0 4px", 
+    `border-radius` = "4px",
+    `color` = "grey50",
+    `font-weight` = "bold",
+    `background-color` = ifelse(x > 0,
+                                csscolor(gradient(as.numeric(x), "white", "palegreen")),
+                                csscolor(gradient(as.numeric(x), "pink", "white")))))
+
+# Table data
+t0 <- dat %>%
+  select(Week, RevenuePre, RevenueCurr, Revenue, Customers, Visits, Items, Spend)
+
+# Number formats
+t1 <- t0 %>%
+  mutate_at(vars(Revenue:Spend), ~ percent(.x, digits = 1)) %>%
+  mutate_at(vars(RevenuePre, RevenueCurr), ~ currency(.x, digits = 0))
+
+# HTML formats
+t2 <- formattable(t1, list(
+    Revenue = tile_formatter,
+    Customers = sign_formatter,
+    Visits = sign_formatter,
+    Items = sign_formatter,
+    Spend = sign_formatter
+    )
+)
+
+knitr::kable(head(select(t1, -RevenuePre, -RevenueCurr), 12))
+```
+
+## Shiny App
+
+:::::::::::::: {.columns}
+::: {.column}
+This report is for:
+
+* Segment: `r params$seg`
+* Group: `r params$grp`
+
+Use the Shiny app to explore explore other segments and groups.
+:::
+::: {.column}
+```{r webshot, cache=TRUE, screenshot.opts=list(delay=3), fig.width=15, fig.cap="Click image to open app."}
+if (is.null(webshot:::find_phantom())) webshot::install_phantomjs()
+knitr::include_app('http://colorado.rstudio.com/rsc/content/1120/')
+```
+:::
+::::::::::::::
+
+::: notes
+Click on the image to open the Shiny app in RStudio Connect. Or visit online at http://colorado.rstudio.com/rsc/content/1120/.
+:::
+
+```{r download, include=FALSE}
+reportLab <- "Customer Tracker Presentation"
+pngfile <- paste0(reportLab, ".png")
+xlsfile <- paste0(reportLab, ".xlsx")
+wb <- createWorkbook()
+addWorksheet(wb, "Summary", gridLines = FALSE)
+ggsave(pngfile, p1, "png", width = 6, height = 3)
+insertImage(wb, "Summary", file = pngfile)
+writeData(wb, "Summary", t0, startRow = 16)
+addWorksheet(wb, sheetName = "Data")
+writeDataTable(wb, sheet = 2, dat)
+saveWorkbook(wb, xlsfile, overwrite = TRUE)
+```
+
+```{r}
+lab <- paste(params$seg, params$grp, params$per, sep = "-")
+p2 <- add_ggplot(p1, 6, 3)
+
+email <- compose_email("
+{reportLab} for {lab} as of {add_readable_time()}.
+
+Hightlights include **{tail(t1, 1)$Revenue} change in revenue** as a result of:
+
+* **{tail(t1, 1)$Visits} change in visits**
+* **{tail(t1, 1)$Items} change in items**
+* **{tail(t1, 1)$Spend} change in spend**
+
+{p2} \n {t2}
+
+For specific data relevant to other segments or groups, view the report on [RStudio Connect](http://colorado.rstudio.com/rsc/connect/#/apps/1646/access/1880).
+")
+
+rmarkdown::output_metadata$set(
+  rsc_email_subject = paste(reportLab, "for", lab),
+  rsc_email_body_html = email$html_str,
+  rsc_email_images = email$images,
+  rsc_email_attachments = xlsfile
+)
+```

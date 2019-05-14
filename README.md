@@ -16,7 +16,7 @@ You can generate most elements supported by Pandoc’s Markdown with the PowerPo
 
 ### RStudio v1.2
 
-RStudio version 1.2 bundles Pandoc 2 making it easy to create PowerPoint presentations in R. You can upgrade to the latest version of RStudio by downloading and installing the [RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/).
+RStudio version 1.2 bundles Pandoc 2 making it easy to create PowerPoint presentations in R.
 
 ### References
 
